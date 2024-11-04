@@ -6,6 +6,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router-dom';
 
 import { GlobalStyles } from '@/app/styles';
+import { FullScreenError } from '@/widgets/FullScreenError';
 
 import App from './App';
 
@@ -14,7 +15,7 @@ createRoot(document.getElementById('root')!).render(
     <GlobalStyles />
     <BrowserRouter>
       <ErrorBoundary
-        FallbackComponent={<div>Error!</div>}
+        FallbackComponent={FullScreenError}
         onReset={() => {
           console.error('Reset Error');
         }}

@@ -1,1 +1,1 @@
-export { baseHttp, checkBiometry, isDev, sendSms, yandexApiKey } from './constants';
+export { baseHttp, isDev } from './constants';
