@@ -1,0 +1,96 @@
+stages:
+  - build
+  - nexus
+  - deploy
+
+variables:
+  NEXUS_URL: registry.frhc.one/freedom-insurance
+  GROUP_NAME: $CI_PROJECT_NAMESPACE
+  BRANCH: $CI_COMMIT_REF_SLUG
+  PROJECT_VCS_REF: $CI_COMMIT_SHORT_SHA
+  PROJECT_BRANCH: $CI_COMMIT_REF_NAME
+
+docker-image:
+  tags:
+    - k8s-prod
+  stage: build
+  image: docker:23
+  script:
+    - echo "==== Project Metadata ===="
+    - UNIX_TIME=$(date '+%s')
+    - TIME_RFC=$(date -u --date=@"${UNIX_TIME}" '+%Y-%m-%dT%H:%M:%SZ')
+    - TIME_UTC=$(date -u --date=@"${UNIX_TIME}" '+%Y%m%d-%H%M%S')
+    - BUILD_ID="${TIME_UTC}--${PROJECT_BRANCH}--${PROJECT_VCS_REF}"
+    - PROJECT_NAME=$(echo "$CI_PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/_/-/g')
+    - IMAGE_FULL_NAME="${NEXUS_URL}/${GROUP_NAME}/${PROJECT_NAME}"
+    - echo "Build ID:\ ${BUILD_ID}"
+    - echo "Image ID:\ ${IMAGE_FULL_NAME}"
+    - echo "Time rfc:\ ${TIME_RFC}"
+    - echo "Name:\     ${PROJECT_NAME}"
+    - echo "==== Building the image ===="
+    - docker build --build-arg BRANCH=${BRANCH} -t $IMAGE_FULL_NAME:$BUILD_ID -f Dockerfile .
+    - echo "IMAGE_FULL_NAME=${IMAGE_FULL_NAME}" >> build.env
+    - echo "BUILD_ID=${BUILD_ID}" >> build.env
+  artifacts:
+    reports:
+      dotenv: build.env
+
+push-to-nexus:
+  tags:
+    - k8s-prod
+  stage: nexus
+  script:
+    - PROJECT_NAME=$(echo "$CI_PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/_/-/g')
+    - IMAGE_FULL_NAME="${NEXUS_URL}/${GROUP_NAME}/${PROJECT_NAME}"
+    - echo "Tagging the image as latest of $PROJECT_BRANCH"
+    - docker image tag "$IMAGE_FULL_NAME:$BUILD_ID" "$IMAGE_FULL_NAME:latest-$PROJECT_BRANCH"
+    - echo "==== Pushing to nexus ===="
+    - docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD ${NEXUS_URL}
+    - echo "$NEXUS_PASSWORD" | docker login ${NEXUS_URL} --username $NEXUS_USERNAME --password-stdin
+    - docker push $IMAGE_FULL_NAME:$BUILD_ID
+    - docker push $IMAGE_FULL_NAME:latest-$PROJECT_BRANCH
+    - docker rmi $IMAGE_FULL_NAME:$BUILD_ID
+    - docker rmi $IMAGE_FULL_NAME:latest-$PROJECT_BRANCH
+
+k8s-deploy-prod:
+  image: dtzar/helm-kubectl
+  stage: deploy
+  only: ["main"]
+  when: manual
+  tags:
+    - k8s-prod
+  script:
+    - PROJECT_NAME=$(echo "$CI_PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/_/-/g')
+    - helm version
+    - export NAMESPACE=php
+    - mkdir -p ~/.kube/deploy
+    - echo ${NEW_KUBECONFIG_PROD} | base64 -d > ~/.kube/deploy/config
+    - chmod 600 ~/.kube/deploy/config
+    - export KUBECONFIG=~/.kube/deploy/config
+    - export VALUES_FILE=.helm/values-prod.yaml
+    - export HELM_PATH=.helm/
+    - cp $VALUES_FILE /tmp/input.yml
+    - envsubst < /tmp/input.yml > ${VALUES_FILE}
+    - helm template -f ${VALUES_FILE} ${HELM_PATH}
+    - helm upgrade --install ${PROJECT_NAME}-prod .helm/ -f .helm/values-prod.yaml --namespace $NAMESPACE --create-namespace
+
+k8s-deploy-dev:
+  image: dtzar/helm-kubectl
+  stage: deploy
+  only: ["develop"]
+  tags:
+    - k8s-prod
+  script:
+    - PROJECT_NAME=$(echo "$CI_PROJECT_NAME" | tr '[:upper:]' '[:lower:]' | sed 's/_/-/g')
+    - helm version
+    - export NAMESPACE=php
+    - mkdir -p ~/.kube/deploy
+    - echo ${KUBECONFIG_DEV} | base64 -d > ~/.kube/deploy/config
+    - chmod 600 ~/.kube/deploy/config
+    - export KUBECONFIG=~/.kube/deploy/config
+    - export VALUES_FILE=.helm/values-stage.yaml
+    - export HELM_PATH=.helm/
+    - cp $VALUES_FILE /tmp/input.yml
+    - envsubst < /tmp/input.yml > ${VALUES_FILE}
+    - helm template -f ${VALUES_FILE} ${HELM_PATH}
+    - helm upgrade --install ${PROJECT_NAME}-dev .helm/ -f .helm/values-stage.yaml --namespace $NAMESPACE --create-namespace

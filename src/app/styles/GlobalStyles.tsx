@@ -18,7 +18,7 @@ const customStyles = css`
     ${tw`antialiased transition-all duration-200`};
     min-height: 100%;
     color: rgba(255, 255, 255, 0.7);
-    background-color: black;
+    background-color: #f7f7f7;
   }
   #root {
     height: 100%;
@@ -28,7 +28,7 @@ const customStyles = css`
   }
 
   * {
-    font-family: 'MuseoSans', sans-serif;
+    font-family: 'SF Pro Display', sans-serif;
   }
 
   .swiper-button-disabled svg {
