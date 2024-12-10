@@ -1,3 +1,26 @@
 {
-  "getStarted": "Можно начинать"
+  "getStarted": "Можно начинать",
+  "common": {
+    "yes": "Да",
+    "no": "Нет",
+    "logout": "Выйти",
+    "close": "Закрыть",
+    "start": "Начать",
+    "back": "Назад",
+    "further": "Далее",
+    "change": "Изменить",
+    "retake": "Переснять",
+    "confirm": "Подтвердить",
+    "continue": "Продолжить",
+    "add": "Добавить",
+    "send": "Отправить",
+    "no-options": "Нет вариантов",
+    "finish": "Завершить"
+  },
+  "re-register": {
+    "agreement": "Согласен с <a style='color:#4EBC73;' href='https://old.dtp.kz'>правилами страхования</a> и ознакомлен с <a style='color:#4EBC73;' href='https://old.dtp.kz'>анкетой</a>"
+  },
+  "timer" : {
+    "otp-resend-before-num": "Отправить SMS повторно через "
+  }
 }

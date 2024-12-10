@@ -1,35 +1,47 @@
-/*TODO: set your default fonts from public folder*/
-/*@font-face {*/
-/*    font-family: "MuseoSans";*/
-/*    src: url('/fonts/MuseoSansCyrl-100.ttf');*/
-/*    font-weight: 100;*/
-/*    font-style: normal;*/
-/*}*/
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-100.otf');
+    font-weight: 100;
+    font-style: normal;
+}
 
-/*@font-face {*/
-/*    font-family: "MuseoSans";*/
-/*    src: url('/fonts/MuseoSansCyrl-300.ttf');*/
-/*    font-weight: 300;*/
-/*    font-style: normal;*/
-/*}*/
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-300.otf');
+    font-weight: 300;
+    font-style: normal;
+}
 
-/*@font-face {*/
-/*    font-family: "MuseoSans";*/
-/*    src: url('/fonts/MuseoSansCyrl-500.ttf');*/
-/*    font-weight: 500;*/
-/*    font-style: normal;*/
-/*}*/
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-400.otf');
+    font-weight: 400;
+    font-style: normal;
+}
 
-/*@font-face {*/
-/*    font-family: "MuseoSans";*/
-/*    src: url('/fonts/MuseoSansCyrl-700.ttf');*/
-/*    font-weight: 700;*/
-/*    font-style: normal;*/
-/*}*/
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-500.otf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-600.otf');
+    font-weight: 600;
+    font-style: normal;
+}
 
-/*@font-face {*/
-/*    font-family: "MuseoSans";*/
-/*    src: url('/fonts/MuseoSansCyrl-900.ttf');*/
-/*    font-weight: 900;*/
-/*    font-style: normal;*/
-/*}*/
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-700.otf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url('/fonts/SF-Pro-Display-900.otf');
+    font-weight: 900;
+    font-style: normal;
+}
