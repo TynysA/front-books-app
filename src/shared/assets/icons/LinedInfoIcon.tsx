@@ -1,10 +1,4 @@
-import { TwStyle } from 'twin.macro';
-
-interface IIconProps {
-  twstyle?: TwStyle;
-  fill?: string;
-  stroke?: string;
-}
+import { IIconProps } from './model/IIcon.ts';
 
 export default function LinedInfoIcon(props: IIconProps) {
   return (

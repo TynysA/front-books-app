@@ -6,6 +6,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { BrowserRouter } from 'react-router-dom';
 
 import { GlobalStyles } from '@/app/styles';
+import { ThemeProvider } from '@/config/theme/ThemeProvider.tsx';
 import { FullScreenError } from '@/widgets/FullScreenError';
 
 import App from './App';
@@ -20,7 +21,9 @@ createRoot(document.getElementById('root')!).render(
           console.error('Reset Error');
         }}
       >
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </ErrorBoundary>
     </BrowserRouter>
   </StrictMode>

@@ -63,7 +63,7 @@ const ReRegisterPage = () => {
   ];
 
   return (
-    <div tw='bg-[#F7F7F7] relative pb-[21px] flex flex-col gap-[24px] h-screen'>
+    <div tw='bg-root relative pb-[21px] flex flex-col gap-[24px]'>
       <HeaderContainer variant='primary' title={'Переоформить полис'} />
       <Outlet context={{ data }} />
     </div>

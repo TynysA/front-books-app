@@ -138,12 +138,19 @@ export const ReRegister = () => {
       type: 'CAR'
     }
   ];
+  const options = [
+    { label: '12 месяцев' },
+    { label: '11 месяцев' },
+    { label: '10 месяцев' },
+    { label: '9 месяцев' },
+    { label: '8 месяцев' }
+  ];
 
   return (
     <form onSubmit={handleSubmit(handeleReRegister)} tw='px-4 flex flex-col gap-[24px] mt-[24px]'>
       <div tw='flex flex-col gap-[16px]'>
-        <div tw='text-[#0F0F0F] text-[28px] font-bold'>Подтвердите данные</div>
-        <div tw='text-[#636366] text-[16px] flex flex-col gap-[12px]'>
+        <div tw='text-primary text-[28px] font-bold'>Подтвердите данные</div>
+        <div tw='text-secondary text-[16px] flex flex-col gap-[12px]'>
           <p>
             Электронное Заявление о досрочном прекращении текущего договора по причине изменения списка водителей или
             авто.
@@ -154,14 +161,14 @@ export const ReRegister = () => {
           </p>
         </div>
       </div>
-      <DataBlock title='Текущий договор' data={dogovor} />
+      <DataBlock twStyle={tw`bg-primary`} title='Текущий договор' data={dogovor} />
 
-      <DataBlock title='Новый договор' data={newDogovor} />
+      <DataBlock twStyle={tw`bg-primary`} title='Новый договор' data={newDogovor} />
 
-      <div tw='flex flex-col bg-[#FFFFFF] p-[16px] text-black rounded-[16px]'>
+      <div tw='flex flex-col bg-primary p-[16px] text-primary rounded-[16px]'>
         <div tw='flex justify-between items-center pb-[16px] border-b-[1px] border-[#EAECED] '>
           <div tw=''>Период действия</div>
-          <div tw='flex gap-[14px] bg-[#EAECED] px-[16px] py-[14px] rounded-[16px]'>
+          <div tw='flex gap-[14px] text-opposite  bg-[#EAECED] px-[16px] py-[14px] rounded-[16px]'>
             <div>12 месяцев</div>
             <Expand />
           </div>
@@ -170,12 +177,11 @@ export const ReRegister = () => {
           <div>{info.isAdditionalSumma ? 'Сумма к доплате' : 'Сумма к возврату'}</div>
           <div>20 000 ₸</div>
         </div>
-
-        <div tw='flex items-center bg-[#EAECED] gap-[12px] px-[12px] py-[8px] rounded-[16px]'>
+        <div tw='flex items-center bg-fourthly gap-[12px] px-[12px] py-[8px] rounded-[16px]'>
           <div>
             <LinedInfoIcon />
           </div>
-          <div tw='text-[#636366] text-[14px] font-medium	'>
+          <div tw='text-secondary-opposite text-[14px] font-medium'>
             Это предварительный расчет суммы к возврату. Окончательный расчет будет произведен на дату заключения.
           </div>
         </div>
@@ -188,7 +194,7 @@ export const ReRegister = () => {
         disabled={false}
         label={<span dangerouslySetInnerHTML={{ __html: t('re-register.agreement') }}></span>}
       />
-      <div tw='text-white w-full'>
+      <div tw='text-primary w-full'>
         <button
           type={'submit'}
           disabled={!isValid}
@@ -199,6 +205,7 @@ export const ReRegister = () => {
           Продолжить
         </button>
       </div>
+      {/*<ButtonSheet type='select' options={options} title={'Период действия'} />*/}
     </form>
   );
 };
