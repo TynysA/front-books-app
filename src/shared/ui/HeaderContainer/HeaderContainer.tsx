@@ -17,7 +17,7 @@ const HeaderContainer = ({ variant, title, goBackCustomHandler, showArrow = true
       {/* Back Arrow */}
       {showArrow && (
         <button onClick={goBack} tw='flex items-center'>
-          <Arrow stroke={variant == 'secondary' ? '#fff' : '#0F0F0F'} tw='w-[24px] h-[24px]' />
+          <Arrow stroke={variant == 'secondary' ? '#FFFFFF' : 'var(--font-primary)'} tw='w-[24px] h-[24px]' />
         </button>
       )}
 
@@ -25,8 +25,8 @@ const HeaderContainer = ({ variant, title, goBackCustomHandler, showArrow = true
         <span
           css={[
             variant == 'secondary'
-              ? tw`text-[#fff] text-[16px] font-medium`
-              : tw`text-[#0F0F0F] text-[18px] font-semibold`
+              ? tw`text-[#FFFFFF] text-[16px] font-medium`
+              : tw`text-primary text-[18px] font-semibold`
           ]}
         >
           {title}
@@ -35,7 +35,7 @@ const HeaderContainer = ({ variant, title, goBackCustomHandler, showArrow = true
 
       {showCloseIcon && (
         <button tw='flex items-center'>
-          <CloseIcon fill={variant == 'secondary' ? '#fff' : '#0F0F0F'} />
+          <CloseIcon fill={variant == 'secondary' ? '#FFFFFF' : 'var(--font-primary)'} />
         </button>
       )}
     </div>

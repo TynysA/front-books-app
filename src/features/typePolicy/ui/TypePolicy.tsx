@@ -4,8 +4,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import tw from 'twin.macro';
 
+import ArrowRight from '@/shared/assets/icons/ArrowRight.tsx';
 import CarIcon from '@/shared/assets/icons/CarIcon.tsx';
 import CloseCircleIcon from '@/shared/assets/icons/CloseCircleIcon.tsx';
+import DocumentDeleteIcon from '@/shared/assets/icons/DocumentDeleteIcon.tsx';
 import DocumentIcon from '@/shared/assets/icons/DocumentIcon.tsx';
 import PersonIcon from '@/shared/assets/icons/PersonIcon.tsx';
 import PlucIcon from '@/shared/assets/icons/PlucIcon.tsx';
@@ -177,21 +179,24 @@ export const TypePolicy = () => {
           Заявить о страховом случае
         </div>
       </div>
-      <div tw='pt-[20px] pb-[30px] px-4 bg-gray-50 rounded-t-xl shadow-md flex flex-col gap-[16px]'>
-        <div tw='bg-white p-4 rounded-lg shadow-nav-menu'>
-          <h2 tw='text-gray-700 text-[16px] font-semibold'>Срок действия страхового полиса</h2>
+      <div
+        tw='pt-[20px] pb-[30px] px-4 bg-root rounded-t-xl shadow-md flex flex-col gap-[16px]'
+        css={[isNew && tw`pb-[80px]`]}
+      >
+        <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
+          <h2 tw='text-primary text-[16px] font-semibold'>Срок действия страхового полиса</h2>
           <div tw='mt-2'>
-            <div tw='w-full bg-gray-200 rounded-full h-2.5'>
-              <div tw='bg-green-500 h-2.5 rounded-full' style={{ width: progressBar }}></div>
+            <div tw='w-full bg-thirdly rounded-full h-2.5'>
+              <div tw='bg-[#4EBC73] h-2.5 rounded-full' style={{ width: progressBar }}></div>
             </div>
-            <div tw='flex justify-between text-gray-500 text-sm mt-2'>
+            <div tw='flex justify-between text-gray text-sm mt-2'>
               <span>Действителен с {startDate}</span>
               <span>по {endDate}</span>
             </div>
           </div>
         </div>
-        <div tw='bg-white p-4 rounded-lg shadow-nav-menu'>
-          <h3 tw='text-[#636366] text-[13px] font-medium  mb-4'>Авто</h3>
+        <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
+          <h3 tw='text-secondary text-[13px] font-medium  mb-4'>Авто</h3>
           {cars.map((item, idx) => (
             <div key={idx} tw='flex justify-between items-center mb-4'>
               <div key={idx} tw='flex items-center'>
@@ -199,14 +204,14 @@ export const TypePolicy = () => {
                   <CarIcon />
                 </div>
                 <div tw='ml-3 flex gap-[12px]'>
-                  <h4 tw='text-gray-800 text-[16px] font-medium'>{item.carModel}</h4>
-                  <div tw='text-[#636366] py-[2px] px-[4px] flex font-normal text-[11px] rounded-[4px]  border-[1px] border-[#636366]'>
+                  <h4 tw='text-primary text-[16px] font-medium'>{item.carModel}</h4>
+                  <div tw='text-gray py-[2px] px-[4px] flex font-normal text-[11px] rounded-[4px]  border-[1px] border-[#636366]'>
                     {item.grnz}
                   </div>
                 </div>
               </div>
               <button onClick={() => removeCar(item.id)}>
-                <CloseCircleIcon />
+                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
               </button>
             </div>
           ))}
@@ -224,18 +229,17 @@ export const TypePolicy = () => {
                     e.target.blur();
                   }
                 }}
-                tw='bg-[#EAECED] outline-[#4EBC73] text-[#8E8E93] w-full border px-[16px] py-[12px] text-[16px] rounded-[16px]'
+                tw='bg-thirdly border border-[#4EBC73] text-[#8E8E93] w-full px-[16px] py-[12px] text-[16px] rounded-[16px]'
                 placeholder='Введите Государственный Номер'
               />
-              {carInput.length > 0 && (
-                <button
-                  ref={closeCarButtonRef}
-                  tw='absolute right-[12px] top-[50%] translate-y-[-50%]'
-                  onClick={closeCarInput}
-                >
-                  <CloseCircleIcon />
-                </button>
-              )}
+
+              <button
+                ref={closeCarButtonRef}
+                tw='absolute right-[12px] top-[50%] translate-y-[-50%]'
+                onClick={closeCarInput}
+              >
+                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
+              </button>
             </div>
           )}
           <div
@@ -249,9 +253,9 @@ export const TypePolicy = () => {
             <span tw='ml-3'>Добавить авто</span>
           </div>
         </div>
-        <div tw='bg-white p-4 rounded-lg shadow-nav-menu'>
-          <h3 tw='text-[#636366] text-[13px] font-medium'>Водители</h3>
-          <div tw=''>
+        <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
+          <h3 tw='text-secondary text-[13px] font-medium'>Водители</h3>
+          <div>
             {drivers.map((driver, idx) => (
               <div key={idx} tw='py-[12px] flex items-center justify-between border-b-[1px] border-[#EAECED]'>
                 <div tw='flex items-center'>
@@ -259,14 +263,14 @@ export const TypePolicy = () => {
                     <PersonIcon />
                   </div>
                   <div tw='ml-3 text-[16px]'>
-                    <h4 tw='text-gray-800'>{driver?.fullName?.toUpperCase()}</h4>
+                    <h4 tw='text-primary'>{driver?.fullName?.toUpperCase()}</h4>
                   </div>
                 </div>
                 {driver.isStrahavatel ? (
-                  <span tw='bg-[#EAECED] text-[#636366] text-[13px] px-2 py-1 rounded-full'>Страхаватель</span>
+                  <span tw='bg-block text-gray text-[13px] px-2 py-1 rounded-full'>Страхаватель</span>
                 ) : (
                   <button onClick={() => removeDriver(driver.id)}>
-                    <CloseCircleIcon />
+                    <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
                   </button>
                 )}
               </div>
@@ -287,18 +291,16 @@ export const TypePolicy = () => {
                     e.target.blur(); // Убираем фокус с input, чтобы скрыть клавиатуру
                   }
                 }}
-                tw='bg-[#EAECED] outline-[#4EBC73] text-[#8E8E93] w-full border px-[16px] py-[12px] text-[16px] rounded-[16px]'
+                tw='bg-thirdly text-[#8E8E93] w-full border border-[#4EBC73] px-[16px] py-[12px] text-[16px] rounded-[16px]'
                 placeholder='Введите ИИН'
               />
-              {driverInput.length > 0 && (
-                <button
-                  ref={closeDriverButtonRef}
-                  tw='absolute  right-[12px] top-[50%] translate-y-[-50%]'
-                  onClick={closeAddDriver}
-                >
-                  <CloseCircleIcon />
-                </button>
-              )}
+              <button
+                ref={closeDriverButtonRef}
+                tw='absolute right-[12px] top-[50%] translate-y-[-50%]'
+                onClick={closeAddDriver}
+              >
+                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
+              </button>
             </div>
           )}
           <div
@@ -312,18 +314,26 @@ export const TypePolicy = () => {
             <span tw='ml-3'>Добавить водителя</span>
           </div>
         </div>
-        <div tw='bg-white p-4 rounded-lg shadow-nav-menu'>
-          <h3 tw='text-[#636366] text-[13px] font-medium  mb-4'>Детали</h3>
+        <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
+          <h3 tw='text-secondary text-[13px] font-medium  mb-4'>Детали</h3>
           <ul tw='space-y-4'>
             {details.map((item, idx) => (
               <li key={idx} tw='flex items-center justify-between' onClick={() => terminateContract(item)}>
                 <div tw='flex items-center'>
                   <div tw='bg-green-100 p-2 rounded-full'>
-                    {item.type == 'DOCUMENTS' ? <DocumentIcon /> : <QnaIcon />}
+                    {item.type == 'DOCUMENTS' ? (
+                      item.action == 'termination' ? (
+                        <DocumentDeleteIcon />
+                      ) : (
+                        <DocumentIcon />
+                      )
+                    ) : (
+                      <QnaIcon />
+                    )}
                   </div>
-                  <span tw='ml-3 text-gray-700'>{item.label}</span>
+                  <span tw='ml-3 text-primary'>{item.label}</span>
                 </div>
-                {/*<FiChevronRight tw='w-5 h-5 text-gray-400' />*/}
+                <ArrowRight fill={'var(--font-gray)'} />
               </li>
             ))}
           </ul>

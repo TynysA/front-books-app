@@ -7,9 +7,13 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 import twPseudoSelectorPlugin from 'tailwindcss-pseudo-selectors';
 // @ts-ignore
 import twTextShadowPlugin from 'tailwindcss-textshadow';
-// TODO: add your configs here
+// TODO: add your config here
 export default {
-  content: ['./src/**/*.{html,ts,tsx}'],
+  content: [
+    `./src/pages/**/*.{js,ts,jsx,tsx,mdx}`,
+    `./src/components/**/*.{js,ts,jsx,tsx,mdx}`,
+    `./src/pageWrappers/**/*.{js,ts,jsx,tsx,mdx}`
+  ],
   theme: {
     fontFamily: {
       ...defaultTheme.fontFamily,
@@ -26,7 +30,6 @@ export default {
           'linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(132deg, #8DD979 -0.7%, #2A5704 103.63%)',
         'button-green-gradient':
           'linear-gradient(132.28deg, #8DD979 -0.7%, #2A5704 103.63%), linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))',
-        'custom-top-gradient': 'linear-gradient(70.36deg, #4B3EEF 0%, #2DBBD2 100%)',
         banner:
           'linear-gradient(100deg, rgba(81, 81, 81, 0.82) 2.39%, rgba(54, 104, 12, 0.82) 103.84%), linear-gradient(0deg, rgba(0, 0, 0, 0.44) 0%, rgba(0, 0, 0, 0.44) 100%), url("/assets/images/main-banner.jpg")',
         'footer-bg': 'linear-gradient(132deg, #71c35a -0.7%, #254709 103.63%)',
@@ -41,7 +44,8 @@ export default {
         'ph-object': 'url("/assets/images/ph-object.png")',
         'ph-mileage': 'url("/assets/images/ph-mileage.png")',
         'ph-vincode': 'url("/assets/images/ph-vincode.jpg")',
-        check: 'url("/assets/images/check.svg")'
+        check: 'url("/assets/images/check.svg")',
+        'custom-top-gradient': 'linear-gradient(70.36deg, #4B3EEF 0%, #2DBBD2 100%)'
       },
       transitionProperty: {
         dropdown: 'transform, visibility, max-height'
@@ -50,19 +54,29 @@ export default {
         tertiary: 'rgba(238, 238, 238, 0.94)',
         checkbox: '#4F9D3A',
         'orange-ffins': '#F9B000',
-        input: '#00000033'
+        input: '#00000033',
+        root: `var(--bg-root)`,
+        primary: `var(--bg-primary)`,
+        secondary: `var(--bg-secondary)`,
+        thirdly: `var(--bg-thirdly)`,
+        fourthly: `var(--bg-fourthly)`,
+        block: `var(--bg-block)`
       },
       textColor: {
         ...defaultTheme.textColor,
-        primary: 'rgba(255, 255, 255, 0.87)',
-        'orange-ffins': '#F9B000'
+        primary: `var(--font-primary)`,
+        opposite: `var(--font-primary-opposite)`,
+        secondary: `var(--font-secondary)`,
+        'secondary-opposite': `var(--font-secondary-opposite)`,
+        gray: `var(--font-gray)`
       },
       textShadow: {
         black: '4px 4px 27px rgba(0, 0, 0, 0.25)'
       },
       borderColor: {
         checkbox: '#4F9D3A',
-        'orange-ffins': '#F9B000'
+        'orange-ffins': '#F9B000',
+        secondary: `var(--bg-secondary)`
       },
       boxShadow: {
         'hovered-btn': '0 5px 5px 5px rgba(194, 197, 199, 0.2)',
