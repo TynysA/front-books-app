@@ -11,18 +11,16 @@ import { pathnames } from '@/shared/lib/constants';
 function App() {
   const { toggleTheme, theme } = useTheme();
   return (
-    <>
-      <Routes>
-        <Route path={pathnames.type_policy} element={<TypePolicyPage />}>
-          <Route index element={<TypePolicy />} />
-        </Route>
-        <Route path={pathnames.re_register} element={<ReRegisterPage />}>
-          <Route index element={<ReRegister />} />
-          <Route path={pathnames.re_register_finish} element={<ReRegisterFinish />} />
-          <Route path={pathnames.re_register_consent} element={<ConsentReRegister />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path={pathnames.type_policy} element={<TypePolicyPage />}>
+        <Route index element={<TypePolicy />} />
+      </Route>
+      <Route path={pathnames.re_register} element={<ReRegisterPage />}>
+        <Route index element={<ReRegister />} />
+        <Route path={pathnames.re_register_finish} element={<ReRegisterFinish />} />
+        <Route path={pathnames.re_register_consent} element={<ConsentReRegister />} />
+      </Route>
+    </Routes>
   );
 }
 

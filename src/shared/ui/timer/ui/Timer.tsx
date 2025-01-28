@@ -48,11 +48,7 @@ export const Timer = ({
       ) : (
         seconds !== 0 && (
           <p
-            css={[
-              tw`text-[#3A3A3C] text-center`,
-              twStyle,
-              variant === 're-register' && tw`absolute top-[-16px] w-full`
-            ]}
+            css={[tw`text-primary text-center`, twStyle, variant === 're-register' && tw`absolute top-[-16px] w-full`]}
           >{`${customText ?? t('timer.otp-resend-before-num')} ${seconds}`}</p>
         )
       )}

@@ -60,7 +60,8 @@ export default {
         secondary: `var(--bg-secondary)`,
         thirdly: `var(--bg-thirdly)`,
         fourthly: `var(--bg-fourthly)`,
-        block: `var(--bg-block)`
+        block: `var(--bg-block)`,
+        lightGreen: `var(--bg-green)`
       },
       textColor: {
         ...defaultTheme.textColor,

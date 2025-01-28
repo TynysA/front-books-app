@@ -22,6 +22,10 @@
   --background-block-light: #EAECED;
   --background-block-dark: #3A3A3C;
 
+  --background-green-light: #B8E4C7;
+  --background-green-dark: #11583C;
+
+
   --font-color-light: #0F0F0F;
   --font-color-dark: #FFFFFF;
 
@@ -46,6 +50,8 @@
   --bg-fourthly: var(--background-fourthly-light);
   --bg-block: var(--background-block-light);
 
+  --bg-green: var(--background-green-light);
+
   --font-primary: var(--font-color-light);
   --font-primary-opposite: var(--font-color-opposite-light);
 
@@ -61,8 +67,11 @@
   --bg-primary: var(--background-primary-dark);
   --bg-secondary: var(--background-secondary-dark);
   --bg-thirdly: var(--background-thirdly-dark);
-  --bg-fourthly: var(--background-fourthly-light);
+  --bg-fourthly: var(--background-fourthly-dark);
   --bg-block: var(--background-block-dark);
+
+  --bg-green: var(--background-green-dark);
+
 
   --font-primary: var(--font-color-dark);
   --font-primary-opposite: var(--font-color-opposite-dark);
@@ -144,10 +153,9 @@ body {
   transition-duration: 200ms;
   min-height: 100%;
   color: rgba(255, 255, 255, 0.7);
-  background-color: #f7f7f7;
 }
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 svg.ours {
   fill: currentColor;

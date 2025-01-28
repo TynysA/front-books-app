@@ -145,7 +145,7 @@ const SmallCheckbox = forwardRef(
 
     return (
       <div tw='flex flex-col gap-[4px] grow' css={[twStyle]}>
-        <label css={[tw`flex items-center gap-[12px] text-[#8E8E93] relative`]}>
+        <label css={[tw`flex items-center gap-[12px] text-gray relative`]}>
           <div
             css={[
               tw`rounded-full w-[24px] h-[24px] border border-white flex justify-center items-center`,

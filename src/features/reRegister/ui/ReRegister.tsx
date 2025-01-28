@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -9,10 +10,16 @@ import Expand from '@/shared/assets/icons/Expand.tsx';
 import LinedInfoIcon from '@/shared/assets/icons/LinedInfoIcon.tsx';
 import Checkbox from '@/shared/ui/Checkbox/Checkbox.tsx';
 import { DataBlock } from '@/shared/ui/DataBlock/DataBlock.tsx';
+import { ButtonSheet } from '@/widgets/ButtonSheet';
+import { ISelectOptions } from '@/widgets/ButtonSheet/ui/type.ts';
 
 export const ReRegister = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const [showButtonSheet, setShowButtonSheet] = useState<boolean>(false);
+  const [periodTime, setPeriodTime] = useState<string>('12 месяцев');
+
   const info = {
     isAdditionalSumma: false
   };
@@ -32,6 +39,11 @@ export const ReRegister = () => {
     console.log('handeleReRegister');
     // navigate('/re-register/finish');
     navigate('/re-register/consent');
+  };
+  const changePeriodTime = formData => {
+    if (formData.label !== periodTime) {
+      setPeriodTime(formData.label);
+    }
   };
 
   const data = [
@@ -138,7 +150,7 @@ export const ReRegister = () => {
       type: 'CAR'
     }
   ];
-  const options = [
+  const options: ISelectOptions[] = [
     { label: '12 месяцев' },
     { label: '11 месяцев' },
     { label: '10 месяцев' },
@@ -162,16 +174,18 @@ export const ReRegister = () => {
         </div>
       </div>
       <DataBlock twStyle={tw`bg-primary`} title='Текущий договор' data={dogovor} />
-
       <DataBlock twStyle={tw`bg-primary`} title='Новый договор' data={newDogovor} />
-
       <div tw='flex flex-col bg-primary p-[16px] text-primary rounded-[16px]'>
         <div tw='flex justify-between items-center pb-[16px] border-b-[1px] border-[#EAECED] '>
           <div tw=''>Период действия</div>
-          <div tw='flex gap-[14px] text-opposite  bg-[#EAECED] px-[16px] py-[14px] rounded-[16px]'>
-            <div>12 месяцев</div>
-            <Expand />
-          </div>
+          <button
+            type='button'
+            tw='flex gap-[14px] text-primary  bg-fourthly px-[16px] py-[14px] rounded-[16px]'
+            onClick={() => setShowButtonSheet(true)}
+          >
+            <div>{periodTime}</div>
+            <Expand fill={'var(--font-primary)'} />
+          </button>
         </div>
         <div tw='py-[16px] flex justify-between items-center'>
           <div>{info.isAdditionalSumma ? 'Сумма к доплате' : 'Сумма к возврату'}</div>
@@ -179,9 +193,9 @@ export const ReRegister = () => {
         </div>
         <div tw='flex items-center bg-fourthly gap-[12px] px-[12px] py-[8px] rounded-[16px]'>
           <div>
-            <LinedInfoIcon />
+            <LinedInfoIcon fill={'var(--font-primary)'} />
           </div>
-          <div tw='text-secondary-opposite text-[14px] font-medium'>
+          <div tw='text-secondary text-[14px] font-medium'>
             Это предварительный расчет суммы к возврату. Окончательный расчет будет произведен на дату заключения.
           </div>
         </div>
@@ -194,18 +208,25 @@ export const ReRegister = () => {
         disabled={false}
         label={<span dangerouslySetInnerHTML={{ __html: t('re-register.agreement') }}></span>}
       />
-      <div tw='text-primary w-full'>
+      <div tw='text-[#FFFFFF] w-full'>
         <button
           type={'submit'}
           disabled={!isValid}
           tw='bg-[#4EBC73] w-full text-[17px] font-semibold text-center py-[14px] rounded-[16px]'
           css={[!isValid && tw`bg-[#B8E4C7]`]}
-          onClick={handeleReRegister}
         >
           Продолжить
         </button>
       </div>
-      {/*<ButtonSheet type='select' options={options} title={'Период действия'} />*/}
+      <ButtonSheet
+        show={showButtonSheet}
+        type='select'
+        defaultValue={periodTime}
+        title='Период действия'
+        options={options}
+        onChange={changePeriodTime}
+        onClose={() => setShowButtonSheet(false)}
+      />
     </form>
   );
 };

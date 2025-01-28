@@ -1,18 +1,15 @@
-import 'twin.macro';
-
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import tw from 'twin.macro';
 
+import { HeaderPolicy } from '@/features/typePolicy/ui/components/HeaderPolicy.tsx';
+import { PolicyData } from '@/features/typePolicy/ui/components/PolicyData.tsx';
 import ArrowRight from '@/shared/assets/icons/ArrowRight.tsx';
 import CarIcon from '@/shared/assets/icons/CarIcon.tsx';
-import CloseCircleIcon from '@/shared/assets/icons/CloseCircleIcon.tsx';
 import DocumentDeleteIcon from '@/shared/assets/icons/DocumentDeleteIcon.tsx';
 import DocumentIcon from '@/shared/assets/icons/DocumentIcon.tsx';
 import PersonIcon from '@/shared/assets/icons/PersonIcon.tsx';
-import PlucIcon from '@/shared/assets/icons/PlucIcon.tsx';
 import QnaIcon from '@/shared/assets/icons/QnaIcon.tsx';
-import WarningIcon from '@/shared/assets/icons/WarningIcon.tsx';
 
 export const TypePolicy = () => {
   const navigate = useNavigate();
@@ -21,16 +18,11 @@ export const TypePolicy = () => {
   const closeDriverButtonRef = useRef(null);
   const closeCarButtonRef = useRef(null);
 
-  const [isAddingCar, setIsAddingCar] = useState(false); // Toggle input visibility for cars
-  const [isAddingDriver, setIsAddingDriver] = useState(false); // Toggle input visibility for drivers
-  const [carInput, setCarInput] = useState(''); // Input value for new car
-  const [driverInput, setDriverInput] = useState(''); // Input value for new driver
-  const [removed, setRemoved] = useState(false);
-  const [cars, setCars] = useState([{ carModel: 'TOYOTA CAMRY', grnz: 'A111AAA', id: 1 }]); // Track the list of cars
+  const [cars, setCars] = useState([{ title: 'TOYOTA CAMRY', subTitle: 'A111AAA', id: 1 }]); // Track the list of cars
   const [drivers, setDrivers] = useState([
-    { id: 1, fullName: 'ОМАРОВ БОЛАТ', isStrahavatel: true },
-    { id: 2, fullName: 'АХМЕТЛОВ АБУ', isStrahavatel: false },
-    { id: 3, fullName: 'Ердосов Серик', isStrahavatel: false }
+    { id: 1, title: 'ОМАРОВ БОЛАТ', canNotRemove: true },
+    { id: 2, title: 'АХМЕТЛОВ АБУ', canNotRemove: false },
+    { id: 3, title: 'Ердосов Серик', canNotRemove: false }
   ]);
   const [initial] = useState({ drivers, cars });
 
@@ -64,76 +56,60 @@ export const TypePolicy = () => {
   }, [cars, drivers]);
 
   const addDriver = e => {
+    const newElement = e.target.value;
     if (
-      driverInput.trim() &&
-      driverInput.length > 11 &&
+      newElement.trim() &&
+      newElement.length > 11 &&
       closeDriverButtonRef.current &&
       !(closeDriverButtonRef?.current == e?.relatedTarget)
     ) {
-      if (initial.drivers.find(item => item.fullName === driverInput)) {
+      if (initial.drivers.find(item => item.title === newElement)) {
         setDrivers([
           ...drivers,
           {
-            id: drivers.length + 1 + driverInput,
-            fullName: driverInput,
-            isStrahavatel: false
+            id: drivers.length + 1 + newElement,
+            title: newElement,
+            canNotRemove: false
           }
         ]);
       } else {
         setDrivers([
           ...drivers,
           {
-            id: drivers.length + 1 + driverInput,
-            fullName: driverInput + '_New',
+            id: drivers.length + 1 + newElement,
+            title: newElement + '_New',
             isNew: true,
-            isStrahavatel: false
+            canNotRemove: false
           }
         ]);
       }
-      setDriverInput('');
-      setIsAddingDriver(false); // Hide the input after adding
     }
   };
   const addCar = e => {
-    if (carInput.trim() && closeCarButtonRef.current && !(closeCarButtonRef?.current == e?.relatedTarget)) {
-      if (initial.cars.find(car => car.grnz === carInput)) {
+    const newElement = e.target.value;
+    if (newElement.trim() && closeCarButtonRef.current && !(closeCarButtonRef?.current == e?.relatedTarget)) {
+      if (initial.cars.find(car => car.subTitle === newElement)) {
         setCars([
           ...cars,
           {
-            id: carInput + cars.length,
-            grnz: carInput,
-            carModel: 'Audi A8'
+            id: newElement + cars.length,
+            subTitle: newElement,
+            title: 'Audi A8'
           }
         ]);
       } else {
         setCars([
           ...cars,
           {
-            id: carInput + cars.length,
-            grnz: carInput,
+            id: newElement + cars.length,
+            subTitle: newElement,
             isNew: true,
-            carModel: 'Audi A8'
+            title: 'Audi A8'
           }
         ]);
       }
-      setCarInput('');
-      setIsAddingCar(false);
     }
   };
-  const closeAddDriver = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsAddingDriver(false);
-    setDriverInput('');
-    // alert('HH');
-  };
-  const closeCarInput = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsAddingCar(false);
-    setCarInput('');
-  };
-
   const removeDriver = driverId => {
     setDrivers(prevDrivers => prevDrivers.filter(driver => driver.id !== driverId));
   };
@@ -168,17 +144,7 @@ export const TypePolicy = () => {
   }, [cars, drivers]);
   return (
     <>
-      <div tw='py-[24px] px-4 flex flex-col gap-[16px]'>
-        <div tw='text-center flex flex-col gap-[8px] leading-none py-[16px]'>
-          <div tw='text-[#F7F7F7] text-[13px] font-medium'>Стоймость страховки</div>
-          <div tw='text-[#ffffff] text-[32px] font-bold'>{info.price}</div>
-          <div tw='text-[#ffffff] text-[13px] font-medium'>{info.id}</div>
-        </div>
-        <div tw='text-[18px] bg-[#FFFFFF26] pt-[14px] flex justify-center items-center gap-[11px] py-[12px] font-semibold text-[#ffffff] rounded-[16px]'>
-          <WarningIcon />
-          Заявить о страховом случае
-        </div>
-      </div>
+      <HeaderPolicy price={info.price} id={info.id} />
       <div
         tw='pt-[20px] pb-[30px] px-4 bg-root rounded-t-xl shadow-md flex flex-col gap-[16px]'
         css={[isNew && tw`pb-[80px]`]}
@@ -195,125 +161,24 @@ export const TypePolicy = () => {
             </div>
           </div>
         </div>
-        <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
-          <h3 tw='text-secondary text-[13px] font-medium  mb-4'>Авто</h3>
-          {cars.map((item, idx) => (
-            <div key={idx} tw='flex justify-between items-center mb-4'>
-              <div key={idx} tw='flex items-center'>
-                <div tw='bg-green-100 p-2 rounded-full'>
-                  <CarIcon />
-                </div>
-                <div tw='ml-3 flex gap-[12px]'>
-                  <h4 tw='text-primary text-[16px] font-medium'>{item.carModel}</h4>
-                  <div tw='text-gray py-[2px] px-[4px] flex font-normal text-[11px] rounded-[4px]  border-[1px] border-[#636366]'>
-                    {item.grnz}
-                  </div>
-                </div>
-              </div>
-              <button onClick={() => removeCar(item.id)}>
-                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
-              </button>
-            </div>
-          ))}
-          {isAddingCar && (
-            <div tw='py-[12px] relative'>
-              <input
-                type='text'
-                value={carInput}
-                maxLength={12}
-                onChange={e => setCarInput(e.target.value)}
-                onBlur={addCar}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    addCar();
-                    e.target.blur();
-                  }
-                }}
-                tw='bg-thirdly border border-[#4EBC73] text-[#8E8E93] w-full px-[16px] py-[12px] text-[16px] rounded-[16px]'
-                placeholder='Введите Государственный Номер'
-              />
-
-              <button
-                ref={closeCarButtonRef}
-                tw='absolute right-[12px] top-[50%] translate-y-[-50%]'
-                onClick={closeCarInput}
-              >
-                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
-              </button>
-            </div>
-          )}
-          <div
-            css={[isAddingCar && tw`opacity-50`]}
-            tw='flex items-center text-[#4EBC73] text-[16px] font-semibold'
-            onClick={() => setIsAddingCar(true)}
-          >
-            <div tw='bg-green-100 p-2 rounded-full'>
-              <PlucIcon />
-            </div>
-            <span tw='ml-3'>Добавить авто</span>
-          </div>
-        </div>
-        <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
-          <h3 tw='text-secondary text-[13px] font-medium'>Водители</h3>
-          <div>
-            {drivers.map((driver, idx) => (
-              <div key={idx} tw='py-[12px] flex items-center justify-between border-b-[1px] border-[#EAECED]'>
-                <div tw='flex items-center'>
-                  <div tw='bg-green-100 p-2 rounded-full'>
-                    <PersonIcon />
-                  </div>
-                  <div tw='ml-3 text-[16px]'>
-                    <h4 tw='text-primary'>{driver?.fullName?.toUpperCase()}</h4>
-                  </div>
-                </div>
-                {driver.isStrahavatel ? (
-                  <span tw='bg-block text-gray text-[13px] px-2 py-1 rounded-full'>Страхаватель</span>
-                ) : (
-                  <button onClick={() => removeDriver(driver.id)}>
-                    <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
-          {isAddingDriver && (
-            <div tw='py-[12px] relative'>
-              <input
-                id='iin'
-                type='tel'
-                value={driverInput}
-                maxLength={12}
-                onChange={e => setDriverInput(e.target.value)}
-                onBlur={addDriver}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    addDriver();
-                    e.target.blur(); // Убираем фокус с input, чтобы скрыть клавиатуру
-                  }
-                }}
-                tw='bg-thirdly text-[#8E8E93] w-full border border-[#4EBC73] px-[16px] py-[12px] text-[16px] rounded-[16px]'
-                placeholder='Введите ИИН'
-              />
-              <button
-                ref={closeDriverButtonRef}
-                tw='absolute right-[12px] top-[50%] translate-y-[-50%]'
-                onClick={closeAddDriver}
-              >
-                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
-              </button>
-            </div>
-          )}
-          <div
-            css={[isAddingDriver && tw`opacity-50`]}
-            tw={'flex items-center text-[#4EBC73] text-[16px] font-semibold py-[12px]'}
-            onClick={() => setIsAddingDriver(true)}
-          >
-            <div tw='bg-green-100 p-2 rounded-full'>
-              <PlucIcon />
-            </div>
-            <span tw='ml-3'>Добавить водителя</span>
-          </div>
-        </div>
+        <PolicyData
+          title={'Авто'}
+          placeholder={'Введите Государственный Номер'}
+          data={cars}
+          logIcon={<CarIcon />}
+          handleRemove={removeCar}
+          handleAdd={addCar}
+          closeButtonRef={closeCarButtonRef}
+        />
+        <PolicyData
+          title={'Водители'}
+          placeholder={'Введите ИИН'}
+          data={drivers}
+          logIcon={<PersonIcon />}
+          handleRemove={removeDriver}
+          handleAdd={addDriver}
+          closeButtonRef={closeDriverButtonRef}
+        />
         <div tw='bg-primary p-4 rounded-lg shadow-nav-menu'>
           <h3 tw='text-secondary text-[13px] font-medium  mb-4'>Детали</h3>
           <ul tw='space-y-4'>
