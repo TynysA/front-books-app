@@ -1,47 +1,22 @@
 import 'twin.macro';
 
 import { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import HeaderContainer from '@/shared/ui/HeaderContainer/HeaderContainer.tsx';
 import { ConfirmationModal } from '@/widgets/ConfirmationModal';
 import { IConfirmationModal } from '@/widgets/ConfirmationModal/ui/type.ts';
 
-const TypePolicyPage = () => {
-  const navigate = useNavigate();
-
+const TerminatePage = () => {
   const [confirmContent, setConfirmContent] = useState<IConfirmationModal>();
   const [confirmOpen, setConfirmOpen] = useState(true);
 
-  const goBackCustomHandler = () => {
-    if (confirmOpen) {
-      setConfirmContent({
-        title: 'Изменения в полисе не будут сохранены',
-        cancelText: 'Закрыть',
-        acceptText: 'Переоформить',
-        contentType: 'row',
-        handleAccept: goToTerminate,
-        colorOfAccept: 'green'
-      });
-    } else {
-      console.log(confirmOpen);
-    }
-  };
-  const goToTerminate = () => {
-    navigate('/re-register');
-  };
   const closeModal = () => {
-    setConfirmContent();
+    setConfirmOpen(false);
   };
-
   return (
-    <div tw='bg-custom-top-gradient relative'>
-      <HeaderContainer
-        goBackCustomHandler={goBackCustomHandler}
-        variant='secondary'
-        title={'ОГПО ВТС'}
-        showCloseIcon={false}
-      />
+    <div tw='bg-root relative pb-[21px] flex flex-col gap-[24px] h-[100dvh]'>
+      <HeaderContainer variant='primary' title={'Расторгнуть договор'} />
       <Outlet context={{ setConfirmContent, setConfirmOpen, confirmOpen }} />
       {confirmOpen && confirmContent && (
         <ConfirmationModal
@@ -58,4 +33,4 @@ const TypePolicyPage = () => {
     </div>
   );
 };
-export default TypePolicyPage;
+export default TerminatePage;

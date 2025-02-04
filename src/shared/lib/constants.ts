@@ -3,5 +3,7 @@ export const pathnames = {
   type_policy: '/',
   re_register: '/re-register',
   re_register_finish: '/re-register/finish',
-  re_register_consent: '/re-register/consent'
+  re_register_consent: '/re-register/consent',
+  terminate: '/terminate',
+  start_policy: '/start-policy'
 };

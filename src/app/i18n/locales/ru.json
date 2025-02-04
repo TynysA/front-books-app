@@ -22,5 +22,14 @@
   },
   "timer" : {
     "otp-resend-before-num": "Отправить SMS повторно через "
+  },
+  "terminationReasons": {
+    "something-happened": "Продажа/дарение/утилизация авто",
+    "at-will": "Расторжение договора страхования по собственному желанию"
+  },
+  "validations": {
+    "checkbox-required": "Ваше согласие обязательно",
+    "required": "Заполните пожалуйста поле",
+    "required-all": "Пожалуйста, заполните все поля"
   }
 }

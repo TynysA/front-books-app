@@ -7,6 +7,8 @@ export interface IButtonSheet {
   onClose: () => void;
   onChange: (formData) => void;
   defaultValue?: string;
+  subText?: string;
+  list?: string[];
 }
 
 export interface ISelectButtonSheet {
@@ -24,4 +26,12 @@ export interface ISelectOptions {
   name?: string;
   value?: string;
   subTitle?: string;
+}
+
+export interface IInfoButtonSheet {
+  text?: string;
+  title?: string;
+  subText?: string;
+  list?: string[];
+  onClose: () => void;
 }

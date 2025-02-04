@@ -159,7 +159,7 @@ export const ReRegister = () => {
   ];
 
   return (
-    <form onSubmit={handleSubmit(handeleReRegister)} tw='px-4 flex flex-col gap-[24px] mt-[24px]'>
+    <form onSubmit={handleSubmit(handeleReRegister)} tw='px-[16px] flex flex-col gap-[24px] mt-[24px]'>
       <div tw='flex flex-col gap-[16px]'>
         <div tw='text-primary text-[28px] font-bold'>Подтвердите данные</div>
         <div tw='text-secondary text-[16px] flex flex-col gap-[12px]'>

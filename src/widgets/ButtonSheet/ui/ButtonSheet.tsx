@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import tw from 'twin.macro';
 
-import ArrowRight from '@/shared/assets/icons/ArrowRight.tsx';
+import ChosenIcon from '@/shared/assets/icons/ChosenIcon.tsx';
 import CloseCircleIcon from '@/shared/assets/icons/CloseCircleIcon.tsx';
-import { IButtonSheet, ISelectButtonSheet } from '@/widgets/ButtonSheet/ui/type.ts';
+import { IButtonSheet, IInfoButtonSheet, ISelectButtonSheet } from '@/widgets/ButtonSheet/ui/type.ts';
 
 export const ButtonSheet = (props: IButtonSheet) => {
   return (
@@ -25,7 +25,7 @@ export const ButtonSheet = (props: IButtonSheet) => {
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-            tw='fixed bottom-0 left-0 w-full flex flex-col px-[16px] pb-[38px] pt-[16px] gap-[16px] bg-primary text-primary'
+            tw='rounded-t-[16px] fixed bottom-0 left-0 w-full flex flex-col px-[16px] pb-[38px] pt-[16px] gap-[16px] bg-root text-primary'
           >
             {props.type === 'select' && (
               <SelectButtonSheet
@@ -36,7 +36,15 @@ export const ButtonSheet = (props: IButtonSheet) => {
                 defaultValue={props.defaultValue}
               />
             )}
-            {props.type === 'info' && <InfoButtonSheet title={props.title} text={props.propstext} />}
+            {props.type === 'info' && (
+              <InfoButtonSheet
+                title={props.title}
+                text={props.text}
+                list={props.list}
+                subText={props.subText}
+                onClose={props.onClose}
+              />
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -72,7 +80,7 @@ const SelectButtonSheet = ({ title, options, onClose, onChange, defaultValue }: 
             onClick={() => changeLoacalValue(option)}
           >
             {option?.label || option?.name || option?.title}
-            {selectedOption?.label == option?.label && <ArrowRight fill={'#4EBC73'} />}
+            {selectedOption?.label == option?.label && <ChosenIcon />}
           </div>
         ))}
       </div>
@@ -80,11 +88,26 @@ const SelectButtonSheet = ({ title, options, onClose, onChange, defaultValue }: 
   );
 };
 
-const InfoButtonSheet = ({ title, text }) => {
+const InfoButtonSheet = (props: IInfoButtonSheet) => {
   return (
-    <div tw='flex gap-[10px] text-left items-center justify-between'>
-      <span>{title}</span>
-      <span>{text}</span>
+    <div tw=' flex flex-col gap-[16px]  justify-between'>
+      <p tw='flex justify-between items-center text-primary'>
+        {props.title}
+        <button type='button' onClick={props.onClose}>
+          <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
+        </button>
+      </p>
+      <div tw='bg-primary p-[16px] text-secondary'>
+        <span>{props.text}</span>
+        {props.list && (
+          <div tw='mt-[8px]'>
+            {props.list.map((el, idx) => (
+              <div key={idx}>{el}</div>
+            ))}
+          </div>
+        )}
+        {props.subText && <span>{props.subText}</span>}
+      </div>
     </div>
   );
 };

@@ -18,7 +18,7 @@ export const PolicyData = (props: IPolicyDataProps) => {
     setInput('');
   };
   const addElement = e => {
-    handleAdd(e);
+    props.handleAdd(e);
     setInput('');
     setIsAdding(false);
   };

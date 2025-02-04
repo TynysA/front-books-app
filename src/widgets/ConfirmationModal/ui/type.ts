@@ -4,7 +4,7 @@ export interface IConfirmationModal {
   acceptText: string;
   title?: string;
   subTitle?: string;
-  colorOfAccept?: 'green' | 'red';
-  handelAccept: () => void;
-  setConfirmOpen?: () => void;
+  colorOfAccept?: string;
+  handleAccept: () => void;
+  closeModal?: () => void;
 }

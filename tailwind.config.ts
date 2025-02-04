@@ -61,7 +61,8 @@ export default {
         thirdly: `var(--bg-thirdly)`,
         fourthly: `var(--bg-fourthly)`,
         block: `var(--bg-block)`,
-        lightGreen: `var(--bg-green)`
+        lightGreen: `var(--bg-green)`,
+        modal: `var(--bg-modal)`
       },
       textColor: {
         ...defaultTheme.textColor,

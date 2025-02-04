@@ -6,7 +6,7 @@ export interface IPolicyDataProps {
   data: ICar[] | IDriver[];
   logIcon: ReactNode;
   handleRemove: (id: number) => void;
-  handleAdd: () => void;
+  handleAdd: (e) => void;
   closeButtonRef: RefObject<any>;
 }
 interface ICar {

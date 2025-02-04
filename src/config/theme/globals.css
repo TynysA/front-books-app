@@ -25,6 +25,8 @@
   --background-green-light: #B8E4C7;
   --background-green-dark: #11583C;
 
+  --background-modal-light: #F7F7F7;
+  --background-modal-dark: #1A1A1A;
 
   --font-color-light: #0F0F0F;
   --font-color-dark: #FFFFFF;
@@ -52,6 +54,8 @@
 
   --bg-green: var(--background-green-light);
 
+  --bg-modal: var(--background-modal-light);
+
   --font-primary: var(--font-color-light);
   --font-primary-opposite: var(--font-color-opposite-light);
 
@@ -72,6 +76,7 @@
 
   --bg-green: var(--background-green-dark);
 
+  --bg-modal: var(--background-modal-dark);
 
   --font-primary: var(--font-color-dark);
   --font-primary-opposite: var(--font-color-opposite-dark);
@@ -155,7 +160,7 @@ body {
   color: rgba(255, 255, 255, 0.7);
 }
 #root {
-  min-height: 100%;
+  min-height: 100dvh;
 }
 svg.ours {
   fill: currentColor;

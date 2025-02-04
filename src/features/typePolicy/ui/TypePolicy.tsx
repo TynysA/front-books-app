@@ -13,7 +13,7 @@ import QnaIcon from '@/shared/assets/icons/QnaIcon.tsx';
 
 export const TypePolicy = () => {
   const navigate = useNavigate();
-  const { setConfirmContent, setConfirmOpen } = useOutletContext();
+  const { setConfirmContent, setConfirmOpen, confirmOpen } = useOutletContext();
 
   const closeDriverButtonRef = useRef(null);
   const closeCarButtonRef = useRef(null);
@@ -123,6 +123,7 @@ export const TypePolicy = () => {
 
   const goToTerminate = () => {
     console.log('goToTerminate');
+    navigate('/terminate');
   };
   const terminateContract = el => {
     if (el.action == 'termination') {
@@ -131,17 +132,13 @@ export const TypePolicy = () => {
         cancelText: 'Отмена',
         acceptText: 'Да, расторгнуть',
         contentType: 'col-reverse',
-        handelAccept: goToTerminate,
+        handleAccept: goToTerminate,
         colorOfAccept: 'red'
       });
       setConfirmOpen(true);
     }
   };
-  useEffect(() => {
-    if (initial.cars !== cars || initial.drivers !== drivers) {
-      console.log('----');
-    }
-  }, [cars, drivers]);
+  useEffect(() => {}, []);
   return (
     <>
       <HeaderPolicy price={info.price} id={info.id} />
