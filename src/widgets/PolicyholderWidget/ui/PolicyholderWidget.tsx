@@ -7,8 +7,8 @@ import { IPolicyDataProps } from '@/features/typePolicy/model/types.ts';
 import CloseCircleIcon from '@/shared/assets/icons/CloseCircleIcon.tsx';
 import PlucIcon from '@/shared/assets/icons/PlucIcon.tsx';
 
-export const PolicyData = (props: IPolicyDataProps) => {
-  const [isAdding, setIsAdding] = useState(false); // Toggle input visibility for drivers
+export const PolicyholderWidget = (props: IPolicyDataProps) => {
+  const [isAdding, setPolicyholderWidgetIsAdding] = useState(false); // Toggle input visibility for drivers
   const [input, setInput] = useState('');
 
   const closeAdd = e => {
@@ -40,13 +40,6 @@ export const PolicyData = (props: IPolicyDataProps) => {
                 )}
               </div>
             </div>
-            {item.canNotRemove ? (
-              <span tw='bg-block text-gray text-[13px] px-2 py-1 rounded-full'>Страхаватель</span>
-            ) : (
-              <button onClick={() => props.handleRemove(item?.id)}>
-                <CloseCircleIcon fill={'var(--font-primary-opposite)'} />
-              </button>
-            )}
           </div>
         ))}
       </div>

@@ -1,11 +1,15 @@
 import 'twin.macro';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
+import CarIcon from '@/shared/assets/icons/CarIcon.tsx';
+import PersonIcon from '@/shared/assets/icons/PersonIcon.tsx';
 import { ButtonSheet } from '@/widgets/ButtonSheet';
 import { ISelectOptions } from '@/widgets/ButtonSheet/ui/type.ts';
+import { CarWidget } from '@/widgets/CarWidget/ui';
+import { PolicyholderWidget } from '@/widgets/PolicyholderWidget/ui';
 
 import { infoSheet } from '../model/constants.ts';
 
@@ -13,6 +17,12 @@ export const StartEntryData = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { setConfirmContent, setConfirmOpen, confirmOpen } = useOutletContext();
+  const closeCarButtonRef = useRef(null);
+  const closeDriverButtonRef = useRef(null);
+
+  const [cars, setCars] = useState([{ title: 'TOYOTA CAMRY', subTitle: 'A111AAA', id: 1 }]);
+
+  const [drivers, setDrivers] = useState([{ id: 1, title: 'ОМАРОВ БОЛАТ БОЛАТОВИЧ', canNotRemove: true }]);
 
   const [info, setInfo] = useState();
   const [showInfoButtonSheet, setInfoShowButtonSheet] = useState<boolean>(false);
@@ -36,16 +46,100 @@ export const StartEntryData = () => {
     setInfo(item);
     setInfoShowButtonSheet(true);
   };
+  const addCar = e => {
+    const newElement = e.target.value;
+    if (newElement.trim() && closeCarButtonRef.current && !(closeCarButtonRef?.current == e?.relatedTarget)) {
+      setCars([
+        ...cars,
+        {
+          id: newElement + cars.length,
+          subTitle: newElement,
+          isNew: true,
+          title: 'Audi A8'
+        }
+      ]);
+    }
+  };
+  const removeCar = carId => {
+    console.log(carId);
+    setConfirmOpen(true);
+    setConfirmContent({
+      title: 'Удалить авто',
+      subTitle: 'Вы точно хотите удалить TOYOTA CAMRY?',
+      cancelText: 'Отмена',
+      acceptText: 'Удалить',
+      contentType: 'row',
+      handleAccept: () => {
+        logs(carId);
+      },
+      colorOfAccept: 'red'
+    });
+    // setCars(prevCars => prevCars.filter(car => car.id !== carId));
+  };
+
+  const addDriver = e => {
+    const newElement = e.target.value;
+    if (
+      newElement.trim() &&
+      newElement.length > 11 &&
+      closeDriverButtonRef.current &&
+      !(closeDriverButtonRef?.current == e?.relatedTarget)
+    ) {
+      if (initial.drivers.find(item => item.title === newElement)) {
+        setDrivers([
+          ...drivers,
+          {
+            id: drivers.length + 1 + newElement,
+            title: newElement,
+            canNotRemove: false
+          }
+        ]);
+      } else {
+        setDrivers([
+          ...drivers,
+          {
+            id: drivers.length + 1 + newElement,
+            title: newElement + '_New',
+            isNew: true,
+            canNotRemove: false
+          }
+        ]);
+      }
+    }
+  };
+  const removeDriver = driverId => {
+    setDrivers(prevDrivers => prevDrivers.filter(driver => driver.id !== driverId));
+  };
+
+  const logs = item => {
+    console.log('item', item);
+  };
 
   return (
     <form tw='p-[16px] flex flex-col mt-[24px] flex-grow border-t-[1px] border-[#EAECED]'>
       <div tw='flex flex-col gap-[16px] h-[100%]'>
         <div tw='text-primary text-[28px] font-bold'>Введите данные</div>
         <div tw='text-primary text-[28px] font-bold' onClick={() => openInfo(infoSheet.benefitsAvailable)}>
-          strahavatel
+          <PolicyholderWidget
+            title={'Страхователь'}
+            placeholder={'Введите ИИН'}
+            data={drivers}
+            logIcon={<PersonIcon />}
+            handleRemove={removeDriver}
+            handleAdd={addDriver}
+            closeButtonRef={closeDriverButtonRef}
+          />
         </div>
         <div tw='text-primary text-[28px] font-bold' id='add-car'>
-          car
+          <CarWidget
+            title={'Авто'}
+            placeholder={'Введите Государственный Номер'}
+            data={cars}
+            logIcon={<CarIcon />}
+            handleRemove={removeCar}
+            handleAdd={addCar}
+            closeButtonRef={closeCarButtonRef}
+          />
         </div>
         <div tw='text-primary text-[28px] font-bold' id='date'>
           date

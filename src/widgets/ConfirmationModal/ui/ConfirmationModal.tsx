@@ -8,7 +8,7 @@ import { IConfirmationModal } from '@/widgets/ConfirmationModal/ui/type.ts';
 const contentTypeStyles = {
   col: tw`flex-col divide-y-[1px]`,
   'col-reverse': tw`flex-col-reverse divide-y-reverse divide-y-[1px]`,
-  row: tw`divide-x-[0px]`,
+  row: tw`divide-x-[1px]`,
   'row-reverse': tw`flex-row-reverse divide-x-reverse divide-x-[1px]`
 };
 
@@ -37,7 +37,10 @@ export const ConfirmationModal = ({
         tw='fixed w-[75%] mx-[auto] top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] text-center bg-modal rounded-[12px]'
         onClick={e => e.stopPropagation()}
       >
-        <div tw='p-[24px] text-center text-primary text-[18px] font-bold border-b-[1px] border-[#D1D1D6]'>{title}</div>
+        <div tw='p-[24px] text-center text-primary text-[18px] font-bold border-b-[1px] border-[#D1D1D6]'>
+          <div tw='text-center text-primary text-[18px] font-bold'>{title}</div>
+          <div tw='text-center text-[14px] font-medium text-secondary mt-[4px]'>{subTitle}</div>
+        </div>
         <div tw='text-[18px] font-bold flex text-center divide-[#E0E0E0]' css={[contentTypeStyles[contentType]]}>
           {cancelText && (
             <div
