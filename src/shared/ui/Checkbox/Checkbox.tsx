@@ -15,11 +15,11 @@ const spring = {
 
 const styles = {
   container: ({ isOn }: { isOn: boolean }) => [
-    tw`flex items-center bg-[#34C759] p-[4px] rounded-[20px] w-[53px] shrink-0 h-[34px] relative `,
+    tw`flex items-center bg-[#34C759] p-[4px] rounded-[20px] w-[51px] shrink-0 h-[31px] relative `,
     isOn ? tw`justify-end` : tw`justify-start bg-[#78788029]`
   ],
   toggle: ({ isOn }: { isOn: boolean }) => [
-    tw`w-[30px] h-[30px] bg-[#FFFFFF] shadow-checkbox rounded-[20px] p-[4px] text-white flex justify-center items-center`,
+    tw`w-[27px] h-[27px] bg-[#FFFFFF] shadow-checkbox rounded-[20px] p-[4px] text-white flex justify-center items-center`,
     isOn && tw`bg-[#FFFFFF]`
   ],
   label: (isWhite?: boolean) => [tw`text-[14px] leading-[normal] text-[#CFCFCF]`, isWhite && tw`text-[#fff] font-bold`],
