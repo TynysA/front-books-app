@@ -9,6 +9,7 @@ import PersonIcon from '@/shared/assets/icons/PersonIcon.tsx';
 import { ButtonSheet } from '@/widgets/ButtonSheet';
 import { ISelectOptions } from '@/widgets/ButtonSheet/ui/type.ts';
 import { CarWidget } from '@/widgets/CarWidget/ui';
+import { DateWidget } from '@/widgets/DateWidget/ui';
 import { PolicyholderWidget } from '@/widgets/PolicyholderWidget/ui';
 
 export const StartEntryData = () => {
@@ -27,7 +28,12 @@ export const StartEntryData = () => {
   const [info, setInfo] = useState();
   const [showInfoButtonSheet, setInfoShowButtonSheet] = useState<boolean>(false);
   const [showSelectButtonSheet, setSelectShowButtonSheet] = useState<boolean>(false);
+  const [showDateButtonSheet, setShowDateButtonSheet] = useState<boolean>(false);
+
   const [periodTime, setPeriodTime] = useState<string>('12 месяцев');
+
+  const [startDate, satStartDate] = useState(new Date());
+
   const changePeriodTime = formData => {
     if (formData.label !== periodTime) {
       setPeriodTime(formData.label);
@@ -110,9 +116,13 @@ export const StartEntryData = () => {
   const logs = item => {
     console.log('item', item);
   };
+  const handleSubmit = e => {
+    e.preventDefault();
+    console.log(e);
+  };
 
   return (
-    <form tw='p-[16px] flex flex-col mt-[24px] flex-grow border-t-[1px] border-[#EAECED]'>
+    <form tw='p-[16px] flex flex-col mt-[24px] flex-grow border-t-[1px] border-[#EAECED]' onSubmit={handleSubmit}>
       <div tw='flex flex-col gap-[16px] h-[100%]'>
         <div tw='text-primary text-[28px] font-bold'>Введите данные</div>
         <div
@@ -142,7 +152,12 @@ export const StartEntryData = () => {
           />
         </div>
         <div tw='text-primary text-[28px] font-bold' id='date'>
-          date
+          <DateWidget
+            periodTime={periodTime}
+            startDate={startDate}
+            setSelectShowButtonSheet={setSelectShowButtonSheet}
+            setShowDateButtonSheet={setShowDateButtonSheet}
+          />
         </div>
         <div tw='text-primary text-[28px] font-bold' tw='text-[#FFFFFF] w-full'>
           <button

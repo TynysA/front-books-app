@@ -5,7 +5,7 @@ export interface IButtonSheet {
   text?: string;
   title?: string;
   onClose: () => void;
-  onChange: (formData) => void;
+  onChange?: (formData: unknown) => void;
   defaultValue?: string;
   subText?: string;
   list?: string[];
