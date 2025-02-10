@@ -39,13 +39,18 @@ const Checkbox = <T extends FieldValues>({
   showErrorBlock = true,
   name,
   control,
-  rules
+  rules,
+  onChange
 }: ICheckbox<T>) => {
   const {
-    field: { value = false, onChange, name: fieldName, ref },
+    field: { value = false, onChange: fieldChange, name: fieldName, ref },
     fieldState: { error }
   } = useController({ name: name, control: control, rules: rules });
 
+  const handleChange = data => {
+    onChange(data.target.checked);
+    fieldChange(data);
+  };
   return (
     <Fragment>
       {variant === 'default' && (
@@ -56,7 +61,7 @@ const Checkbox = <T extends FieldValues>({
           twStyle={twStyle}
           hasWord={hasWord}
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           fieldName={fieldName}
           disabled={disabled}
           showError={showError}

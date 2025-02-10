@@ -11,8 +11,6 @@ import { ISelectOptions } from '@/widgets/ButtonSheet/ui/type.ts';
 import { CarWidget } from '@/widgets/CarWidget/ui';
 import { PolicyholderWidget } from '@/widgets/PolicyholderWidget/ui';
 
-import { infoSheet } from '../model/constants.ts';
-
 export const StartEntryData = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -22,7 +20,9 @@ export const StartEntryData = () => {
 
   const [cars, setCars] = useState([{ title: 'TOYOTA CAMRY', subTitle: 'A111AAA', id: 1 }]);
 
-  const [drivers, setDrivers] = useState([{ id: 1, title: 'ОМАРОВ БОЛАТ БОЛАТОВИЧ', canNotRemove: true }]);
+  const [drivers, setDrivers] = useState([
+    { iin: '030955447485', fullName: 'ОМАРОВ БОЛАТ БОЛАТОВИЧ', benefits: false, driver: false, showDriver: true }
+  ]);
 
   const [info, setInfo] = useState();
   const [showInfoButtonSheet, setInfoShowButtonSheet] = useState<boolean>(false);
@@ -78,37 +78,33 @@ export const StartEntryData = () => {
   };
 
   const addDriver = e => {
+    console.log(e);
     const newElement = e.target.value;
+    console.log(newElement);
     if (
       newElement.trim() &&
       newElement.length > 11 &&
       closeDriverButtonRef.current &&
       !(closeDriverButtonRef?.current == e?.relatedTarget)
     ) {
-      if (initial.drivers.find(item => item.title === newElement)) {
-        setDrivers([
-          ...drivers,
-          {
-            id: drivers.length + 1 + newElement,
-            title: newElement,
-            canNotRemove: false
-          }
-        ]);
-      } else {
-        setDrivers([
-          ...drivers,
-          {
-            id: drivers.length + 1 + newElement,
-            title: newElement + '_New',
-            isNew: true,
-            canNotRemove: false
-          }
-        ]);
-      }
+      console.log('=----');
+      setDrivers([...drivers, { iin: newElement, title: 'HHH RRR LLL', benefits: false, driver: false }]);
     }
   };
-  const removeDriver = driverId => {
-    setDrivers(prevDrivers => prevDrivers.filter(driver => driver.id !== driverId));
+  const removeDriver = (item, onConfirm) => {
+    setConfirmOpen(true);
+    setConfirmContent({
+      title: 'Удалить водителя',
+      subTitle: `Вы точно хотите удалить ${item.fullName} из списка водителей?`,
+      cancelText: 'Отмена',
+      acceptText: 'Удалить',
+      contentType: 'row',
+      handleAccept: () => {
+        onConfirm();
+        setConfirmOpen(false);
+      },
+      colorOfAccept: 'red'
+    });
   };
 
   const logs = item => {
@@ -119,7 +115,10 @@ export const StartEntryData = () => {
     <form tw='p-[16px] flex flex-col mt-[24px] flex-grow border-t-[1px] border-[#EAECED]'>
       <div tw='flex flex-col gap-[16px] h-[100%]'>
         <div tw='text-primary text-[28px] font-bold'>Введите данные</div>
-        <div tw='text-primary text-[28px] font-bold' onClick={() => openInfo(infoSheet.benefitsAvailable)}>
+        <div
+          tw='text-primary text-[28px] font-bold'
+          // onClick={() => openInfo(infoSheet.benefitsAvailable)}
+        >
           <PolicyholderWidget
             title={'Страхователь'}
             placeholder={'Введите ИИН'}
@@ -127,6 +126,7 @@ export const StartEntryData = () => {
             logIcon={<PersonIcon />}
             handleRemove={removeDriver}
             handleAdd={addDriver}
+            onChange={logs}
             closeButtonRef={closeDriverButtonRef}
           />
         </div>

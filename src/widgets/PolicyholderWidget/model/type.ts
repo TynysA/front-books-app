@@ -1,23 +1,12 @@
 import { ReactNode, RefObject } from 'react';
 
-export interface IPolicyDataProps {
+export interface IPolicyholderWidgetProps {
   title: string;
   placeholder: string;
   data: ICar[] | IDriver[];
   logIcon: ReactNode;
-  handleRemove: (id: number) => void;
+  handleRemove: (id: any) => boolean;
   handleAdd: (e) => void;
   closeButtonRef: RefObject<any>;
   onChange?: (data) => void;
-}
-interface ICar {
-  id: number;
-  title: string;
-  subTitle: string;
-}
-
-interface IDriver {
-  id: number;
-  title: string;
-  canNotRemove: boolean;
 }

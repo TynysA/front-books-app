@@ -32,7 +32,7 @@ export const useTheme = (): ThemeContextType => {
 const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(() => {
     if (isBrowser) {
-      return Theme.dark;
+      return Theme.light;
     }
     return getInitialTheme();
   });
