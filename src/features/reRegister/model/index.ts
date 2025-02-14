@@ -1,1 +1,0 @@
-export { reRegisterSchema } from './validationSchema';
