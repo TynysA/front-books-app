@@ -6,9 +6,8 @@ import tw from 'twin.macro';
 
 import { ILoginFormValues } from '@/pages/LoginPage/model/type.ts';
 import { loginSchema } from '@/pages/LoginPage/model/validationSchema.ts';
-import { pathnames } from '@/shared/lib/constants.ts';
-import Button from '@/shared/ui/Button/Button.tsx';
-import Input from '@/shared/ui/Input/Input.tsx';
+import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
+import Input from '@/shared/ui/actionsUI/Input/Input.tsx';
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -21,13 +20,13 @@ const LoginPage = () => {
 
   const onFinish = data => {
     console.log(data);
-    navigate(pathnames.main);
+    // navigate(pathnames.main);
   };
 
   return (
     <div tw='min-h-screen w-full flex justify-center items-center text-primary'>
       <div tw='text-center max-w-[500px] grow'>
-        <h1 tw='mb-[20px]'>{t('auth.title')}</h1>
+        <h1 tw='text-[30px] font-black mb-[20px]'>{t('auth.title')}</h1>
         <form onSubmit={handleSubmit(onFinish)}>
           <div tw='flex flex-col gap-[20px] mb-[50px]'>
             <Input<ILoginFormValues>

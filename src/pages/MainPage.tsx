@@ -1,7 +1,17 @@
 import 'twin.macro';
 
+import { Outlet } from 'react-router-dom';
+
+import Layout from '@/shared/ui/Layout/Layout.tsx';
+
 const MainPage = () => {
-  return <div tw='bg-root p-[16px] overflow-hidden flex flex-col gap-[15px] text-primary'></div>;
+  return (
+    <Layout sidebarContent={[]}>
+      <div tw='p-[30px]'>
+        <Outlet />
+      </div>
+    </Layout>
+  );
 };
 
 export default MainPage;

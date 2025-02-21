@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <div tw='mb-[30px] flex justify-between items-center gap-[30px] text-[#2F2F2F] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
+    <div tw='mb-[30px] flex justify-between text-primary items-center gap-[30px] text-[#2F2F2F] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
       <Link to={pathnames.main}>QuizzDo</Link>
       <div tw='flex gap-[20px]  items-center'>
         <ThemeSwitcher />
