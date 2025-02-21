@@ -20,10 +20,15 @@ export default {
       sans: ['"Noto Sans"', 'sans-serif']
     },
     extend: {
+      borderColor: {
+        checkbox: '#4F9D3A',
+        'orange-border': '#F9B000'
+      },
+
       backgroundColor: {
         tertiary: 'rgba(238, 238, 238, 0.94)',
         checkbox: '#4F9D3A',
-        'orange-ffins': '#F9B000',
+        'orange-border': '#F9B000',
         input: '#00000033',
         root: `var(--bg-root)`,
         primary: `var(--bg-primary)`,

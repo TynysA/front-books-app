@@ -1,7 +1,7 @@
 {
   "header": {
-    "profile": "Профиль",
-    "logout": "Выйти"
+    "profile": "Profile",
+    "logout": "Exit"
   },
   "common": {
     "yes": "Да",

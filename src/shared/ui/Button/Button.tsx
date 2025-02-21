@@ -1,20 +1,18 @@
 import { motion } from 'framer-motion';
 import tw from 'twin.macro';
 
-import pendingImg from '@/shared/assets/gifs/pending.gif';
-
 import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton } from './types';
 
 const buttonVariants: IButtonVariants = {
-  primary: tw`bg-button-gradient-green text-[14px] leading-[normal] font-bold text-white p-[16px] rounded-[10px]`,
-  colorBg: tw`bg-[#B3B3B3] text-[14px] leading-[normal] font-bold text-[#242624] p-[16px] rounded-[10px]`,
-  transparent: tw`bg-transparent text-[14px] leading-[normal] font-bold text-[#050505] p-[16px] rounded-[10px] border border-black`,
-  material: tw`bg-white text-[16px] leading-[normal] font-bold text-[#4FAF3B] p-[16px] rounded-[10px] shadow-material-btn`,
-  table_control: tw`py-[1px] px-[10px] font-bold text-white bg-button-gradient-green rounded-[3px]`,
-  flat: tw`bg-[#4EBC73] text-[18px] rounded-[16px] text-white font-semibold`,
-  panel: tw`bg-[#517F48] py-[10px] px-[16px] text-[16px] rounded-[10px] text-white shadow-btn font-semibold`,
-  secondary: tw`bg-button-green-gradient text-[16px] rounded-[10px] text-white font-semibold`,
-  grey: tw`bg-[#EAECED] text-[18px] rounded-[10px] text-[#4EBC73] font-semibold`
+  // primary: tw`bg-button-gradient-green text-[14px] leading-[normal] font-bold text-white p-[16px] rounded-[10px]`
+  // colorBg: tw`bg-[#B3B3B3] text-[14px] leading-[normal] font-bold text-[#242624] p-[16px] rounded-[10px]`,
+  // transparent: tw`bg-transparent text-[14px] leading-[normal] font-bold text-[#050505] p-[16px] rounded-[10px] border border-black`,
+  // material: tw`bg-white text-[16px] leading-[normal] font-bold text-[#4FAF3B] p-[16px] rounded-[10px] shadow-material-btn`,
+  // table_control: tw`py-[1px] px-[10px] font-bold text-white bg-button-gradient-green rounded-[3px]`,
+  // flat: tw`bg-[#4EBC73] text-[18px] rounded-[16px] text-white font-semibold`,
+  // panel: tw`bg-[#517F48] py-[10px] px-[16px] text-[16px] rounded-[10px] text-white shadow-btn font-semibold`,
+  // secondary: tw`bg-button-green-gradient text-[16px] rounded-[10px] text-white font-semibold`,
+  // grey: tw`bg-[#EAECED] text-[18px] rounded-[10px] text-[#4EBC73] font-semibold`
 };
 
 const styles = {
@@ -36,8 +34,6 @@ const Button = ({
   twStyle,
   isLoading = false
 }: IButton) => {
-  if (isLoading) children = <img tw='w-[22px] h-[22px] mx-auto my-0' src={pendingImg} alt={''} />;
-
   return (
     <motion.button
       css={styles.button({ variant, twStyle, isLoading })}
@@ -46,16 +42,8 @@ const Button = ({
       type={type}
       onClick={onClick}
     >
-      {variant === 'table_control' && <LinkButton text={children} icon={icon} />}
       {variant === 'primary' && <LinkButton text={children} icon={icon} />}
       {variant === 'icon' && <IconButton icon={icon} />}
-      {variant === 'colorBg' && <LinkButton text={children} icon={icon} />}
-      {variant === 'transparent' && <LinkButton text={children} icon={icon} />}
-      {variant === 'material' && <LinkButton text={children} icon={icon} />}
-      {variant === 'flat' && <LinkButton text={children} icon={icon} />}
-      {variant === 'panel' && <LinkButton text={children} icon={icon} />}
-      {variant === 'secondary' && <LinkButton text={children} icon={icon} />}
-      {variant === 'grey' && <LinkButton text={children} icon={icon} />}
     </motion.button>
   );
 };

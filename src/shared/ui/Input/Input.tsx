@@ -3,7 +3,6 @@ import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 import { IMaskInput, useIMask } from 'react-imask';
 import tw from 'twin.macro';
 
-import PasswordEyeIcon from '@/shared/assets/icons/PasswordEyeIcon';
 import { IDummyInput, IInput, IInputVariants, IMaskedInput } from '@/shared/ui/Input/types';
 import { ErrorMessageBlock } from '@/widgets/ErrorMessageBlock';
 
@@ -31,7 +30,7 @@ const Input = <T extends FieldValues>({
   disabled = false,
   showError = true,
   showErrorBorder = false,
-  showErrorBlock = true,
+  showErrorBlock = false,
   isHiddenLetter = false,
   mask,
   inputMode,
@@ -83,7 +82,7 @@ const Input = <T extends FieldValues>({
           tw`relative flex items-center font-semibold leading-[100%]`,
           inputVariants[variant],
           isTouched && tw`flex-col items-start py-[8px] gap-[4px]`,
-          showErrorBorder && !isValid && error && tw`border-orange-ffins`,
+          showErrorBorder && !isValid && error && tw`border-orange-border`,
           disabled && tw`bg-[#ADADAD]`,
           tw`focus-within:border-[#797979]`,
           variant === 'dark' && tw`bg-none`,
@@ -137,7 +136,7 @@ const Input = <T extends FieldValues>({
         )}
         {isHiddenLetter && (
           <button type={'button'} onClick={e => toggleVisibilityHandler(e)}>
-            <PasswordEyeIcon hasline={String(!hidden)} />
+            {hidden ? 'SHOW' : 'HIDE'}
           </button>
         )}
         {icon && <div tw='w-[14px] h-[14px] absolute right-[14px] top-[16px]'>{icon}</div>}

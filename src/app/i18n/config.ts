@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import kk from '@/app/i18n/locales/kk.json';
+import en from '@/app/i18n/locales/en.json';
 import ru from '@/app/i18n/locales/ru.json';
 
 if (!localStorage.getItem('lang')) localStorage.setItem('lang', 'ru');
@@ -10,8 +10,8 @@ i18n.use(initReactI18next).init({
   fallbackLng: localStorage.getItem('lang') ?? 'ru',
   lng: localStorage.getItem('lang') ?? 'ru',
   resources: {
-    kk: {
-      translations: kk
+    en: {
+      translations: en
     },
     ru: {
       translations: ru
@@ -21,6 +21,6 @@ i18n.use(initReactI18next).init({
   defaultNS: 'translations'
 });
 
-i18n.languages = ['kk', 'ru'];
+i18n.languages = ['en', 'ru'];
 
 export default i18n;
