@@ -3,12 +3,13 @@ import { FieldValues, useController, UseControllerProps } from 'react-hook-form'
 import { IMaskInput, useIMask } from 'react-imask';
 import tw from 'twin.macro';
 
-import { IDummyInput, IInput, IInputVariants, IMaskedInput } from '@/shared/ui/Input/types';
+import { IDummyInput, IInput, IInputVariants, IMaskedInput } from '@/shared/ui/actionsUI/Input/types.ts';
 import { ErrorMessageBlock } from '@/widgets/ErrorMessageBlock';
 
 const inputVariants: IInputVariants = {
-  light: tw`bg-[#fff] text-[#7d7d7d] border-none outline-none w-full rounded-[5px] py-[13px] px-[10px]`,
-  dark: tw`bg-[#212121] border-[2px] border-[#2F2F2F] outline-none w-full rounded-[10px] py-[16px] px-[14px]`
+  light: tw`bg-[#fff] text-[#7d7d7d] border border-[#DEE0E3] outline-none w-full rounded-[5px] py-[13px] px-[10px]`,
+  dark: tw`bg-[#212121] border-[2px] border-[#2F2F2F] outline-none w-full rounded-[10px] py-[16px] px-[14px]`,
+  transparent: tw`h-[52px] bg-transparent border border-[var(--bg-secondary)] outline-none w-full rounded-[10px] py-[16px] px-[14px]`
 };
 
 const Input = <T extends FieldValues>({
@@ -135,7 +136,11 @@ const Input = <T extends FieldValues>({
           />
         )}
         {isHiddenLetter && (
-          <button type={'button'} onClick={e => toggleVisibilityHandler(e)}>
+          <button
+            tw='bg-lightGreen py-[5px] px-[10px] rounded-[8px]'
+            type={'button'}
+            onClick={e => toggleVisibilityHandler(e)}
+          >
             {hidden ? 'SHOW' : 'HIDE'}
           </button>
         )}

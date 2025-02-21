@@ -1,7 +1,7 @@
 import { FieldValues, useController } from 'react-hook-form';
 import tw from 'twin.macro';
 
-import { IRadio } from '@/shared/ui/Radio/types';
+import { IRadio } from '@/shared/ui/actionsUI/Radio/types.ts';
 
 const styles = {
   container: ({ disabled }) => [tw`max-w-full w-full relative`, disabled && tw`opacity-50`]

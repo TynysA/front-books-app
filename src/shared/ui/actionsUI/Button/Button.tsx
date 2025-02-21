@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import tw from 'twin.macro';
 
-import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton } from './types';
+import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton } from './types.ts';
 
 const buttonVariants: IButtonVariants = {
-  // primary: tw`bg-button-gradient-green text-[14px] leading-[normal] font-bold text-white p-[16px] rounded-[10px]`
+  primary: tw`bg-[#11583C] text-[14px] leading-[normal] font-bold text-white p-[16px] rounded-[10px]`
   // colorBg: tw`bg-[#B3B3B3] text-[14px] leading-[normal] font-bold text-[#242624] p-[16px] rounded-[10px]`,
   // transparent: tw`bg-transparent text-[14px] leading-[normal] font-bold text-[#050505] p-[16px] rounded-[10px] border border-black`,
   // material: tw`bg-white text-[16px] leading-[normal] font-bold text-[#4FAF3B] p-[16px] rounded-[10px] shadow-material-btn`,
