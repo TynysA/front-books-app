@@ -1,5 +1,6 @@
 export const pathnames = {
   main: '/main',
   login: '/login',
-  register: '/auth/registration'
+  register: '/auth/registration',
+  welcome: '/'
 };
