@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import ProtectedApp from '@/app/ProtectedApp.tsx';
 import LoginPage from '@/pages/LoginPage/LoginPage.tsx';
+import WelcomePage from '@/pages/WelcomePage/WelcomePage.tsx';
 import { pathnames } from '@/shared/lib/constants';
 
 function AuthChecker({ children }: { children: ReactNode }) {
@@ -17,6 +18,7 @@ function App() {
   return (
     <Routes>
       <Route path={pathnames.login} element={<LoginPage />} />
+      <Route path={pathnames.welcome} element={<WelcomePage />} />
       {/*  <Route path={pathnames.register} element={<RegisterPage} />*/}
       <Route
         path={'*'}
