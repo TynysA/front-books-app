@@ -3,6 +3,12 @@
     "profile": "Profile",
     "logout": "Exit"
   },
+  "auth": {
+    "title": "Login",
+    "login": "Sign in",
+    "username": "Username",
+    "password": "Password"
+  },
   "common": {
     "yes": "Да",
     "no": "Нет",
@@ -24,5 +30,14 @@
     "checkbox-required": "Ваше согласие обязательно",
     "required": "Заполните пожалуйста поле",
     "required-all": "Пожалуйста, заполните все поля"
+  },
+  "welcome": {
+    "student-title":"If you are a student or schoolchild",
+    "teacher-title": "If you are a teacher or event/work supervisor",
+    "student-points1": "We help you prepare for exams and tests",
+    "student-points2": "You can take tests without even registering",
+    "teacher-points1": "You can see the test results on the platform",
+    "teacher-points2": "You can select several tests and see the overall results",
+    "teacher-points3": "We can help collect job or event satisfaction results"
   }
 }

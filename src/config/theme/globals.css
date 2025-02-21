@@ -43,6 +43,9 @@
   --custom-gradient-light:linear-gradient(70.36deg, #4B3EEF 0%, #2DBBD2 100%) ;
   --custom-gradient-dark: linear-gradient(70.36deg, #4B3EEF 0%, #2DBBD2 100%);
 
+  --border-primary-light: #DEE0E3;
+  --border-primary-dark: #2F2F2F;
+
 }
 .light {
   --bg-root: var(--background-light);
@@ -53,6 +56,7 @@
   --bg-block: var(--background-block-light);
 
   --bg-green: var(--background-green-light);
+  --bg-dark-green: var(--background-green-dark);
 
   --bg-modal: var(--background-modal-light);
 
@@ -75,6 +79,8 @@
   --bg-block: var(--background-block-dark);
 
   --bg-green: var(--background-green-dark);
+  --bg-dark-green: var(--background-green-light);
+
 
   --bg-modal: var(--background-modal-dark);
 

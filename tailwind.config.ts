@@ -37,6 +37,7 @@ export default {
         fourthly: `var(--bg-fourthly)`,
         block: `var(--bg-block)`,
         lightGreen: `var(--bg-green)`,
+        darkGreen: `var(--bg-dark-green)`,
         modal: `var(--bg-modal)`
       },
       textColor: {

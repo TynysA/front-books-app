@@ -31,7 +31,7 @@ const MainLangSwitcher = ({ i18n, changeLocale }: ISwitcher) => {
           <span>{i18n.language === 'ru' ? 'RUS' : 'ENG'}</span>
           <Expand
             twstyle={isMenuOpen ? tw`rotate-180 transition-transform` : tw`transition-transform`}
-            fill={'#2F2F2F'}
+            fill={'var(--font-primary)'}
           />
         </div>
       </button>
