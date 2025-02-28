@@ -31,13 +31,30 @@
     "required": "Заполните пожалуйста поле",
     "required-all": "Пожалуйста, заполните все поля"
   },
+  "main": {
+    "tests": "Списов тестов",
+    "scores": "Результат участников"
+  },
+  "tests": {
+    "create": "Создать новый тест",
+    "title": "Название теста",
+    "questions_count": "Количество вопросов",
+    "categories": "Категории"
+  },
   "welcome": {
-    "student-title":"If you are a student or schoolchild",
-    "teacher-title": "If you are a teacher or event/work supervisor",
-    "student-points1": "We help you prepare for exams and tests",
-    "student-points2": "You can take tests without even registering",
-    "teacher-points1": "You can see the test results on the platform",
-    "teacher-points2": "You can select several tests and see the overall results",
-    "teacher-points3": "We can help collect job or event satisfaction results"
+    "student-title": "Если вы студент или школьник",
+    "teacher-title": "Если вы учитель или руководитель мероприятия/работ",
+    "student-points1": "Мы поможем вам подготовиться к экзаменам и тестам",
+    "student-points2": "Вы можете проходить тесты даже без регистрации",
+    "teacher-points1": "Вы можете видеть результаты тестов на платформе",
+    "teacher-points2": "Вы можете выбрать несколько тестов и просмотреть общие результаты",
+    "teacher-points3": "Мы поможем собрать отзывы о работе или мероприятии"
+  },
+  "scores": {
+    "test_title": "Название теста",
+    "test_description": "Описание теста",
+    "is_passed": "Пройден",
+    "completed_at": "Дата завершения",
+    "score": "Оценка"
   }
 }

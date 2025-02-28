@@ -3,7 +3,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import Scores from '@/features/main/scores/Scores.tsx';
 import Tests from '@/features/main/tests/Tests.tsx';
-import MainPage from '@/pages/MainPage.tsx';
+import MainPage from '@/pages/MainPage/MainPage.tsx';
 import { pathnames } from '@/shared/lib/constants';
 import Header from '@/shared/ui/Header';
 import { FullScreenLoader } from '@/widgets/FullScreenLoader';
