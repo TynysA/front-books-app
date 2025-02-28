@@ -1,7 +1,7 @@
 {
   "header": {
     "profile": "Profile",
-    "logout": "Exit"
+    "logout": "Logout"
   },
   "auth": {
     "title": "Login",
@@ -10,34 +10,51 @@
     "password": "Password"
   },
   "common": {
-    "yes": "Да",
-    "no": "Нет",
-    "logout": "Выйти",
-    "close": "Закрыть",
-    "start": "Начать",
-    "back": "Назад",
-    "further": "Далее",
-    "change": "Изменить",
-    "retake": "Переснять",
-    "confirm": "Подтвердить",
-    "continue": "Продолжить",
-    "add": "Добавить",
-    "send": "Отправить",
-    "no-options": "Нет вариантов",
-    "finish": "Завершить"
+    "yes": "Yes",
+    "no": "No",
+    "logout": "Logout",
+    "close": "Close",
+    "start": "Start",
+    "back": "Back",
+    "further": "Next",
+    "change": "Change",
+    "retake": "Retake",
+    "confirm": "Confirm",
+    "continue": "Continue",
+    "add": "Add",
+    "send": "Send",
+    "no-options": "No options",
+    "finish": "Finish"
   },
   "validations": {
-    "checkbox-required": "Ваше согласие обязательно",
-    "required": "Заполните пожалуйста поле",
-    "required-all": "Пожалуйста, заполните все поля"
+    "checkbox-required": "Your consent is required",
+    "required": "Please fill in this field",
+    "required-all": "Please fill in all fields"
   },
   "welcome": {
-    "student-title":"If you are a student or schoolchild",
+    "student-title": "If you are a student or schoolchild",
     "teacher-title": "If you are a teacher or event/work supervisor",
     "student-points1": "We help you prepare for exams and tests",
     "student-points2": "You can take tests without even registering",
     "teacher-points1": "You can see the test results on the platform",
-    "teacher-points2": "You can select several tests and see the overall results",
+    "teacher-points2": "You can select multiple tests and see the overall results",
     "teacher-points3": "We can help collect job or event satisfaction results"
+  },
+  "main": {
+    "tests": "List of tests",
+    "scores": "Participant results"
+  },
+  "tests": {
+    "create": "Create a new test",
+    "title": "Test title",
+    "questions_count": "Number of questions",
+    "categories": "Categories"
+  },
+  "scores": {
+    "test_title": "Test title",
+    "test_description": "Test description",
+    "is_passed": "Passed",
+    "completed_at": "Completed at",
+    "score": "Score"
   }
 }

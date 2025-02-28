@@ -95,15 +95,6 @@
   --custom-gradient: var(--custom-gradient-dark);
 }
 
-body {
-  color: var(--font-primary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--bg-root);
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
-}
 
 html {
   height: 100%;
@@ -163,7 +154,9 @@ body {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 200ms;
   min-height: 100%;
-  color: rgba(255, 255, 255, 0.7);
+  padding: 0 30px;
+  color: var(--font-primary);
+  background: var(--bg-root);
 }
 #root {
   min-height: 100dvh;

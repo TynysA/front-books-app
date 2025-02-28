@@ -4,23 +4,26 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import tw from 'twin.macro';
 
-import { ILoginFormValues } from '@/pages/LoginPage/model/type.ts';
+import { useTypedDispatch } from '@/app/store';
+import { setAuth } from '@/entities/user';
 import { loginSchema } from '@/pages/LoginPage/model/validationSchema.ts';
+import { pathnames } from '@/shared/lib/constants.ts';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 import Input from '@/shared/ui/actionsUI/Input/Input.tsx';
 
 const LoginPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const dispatch = useTypedDispatch();
 
-  const { control, handleSubmit } = useForm<ILoginFormValues>({
+  const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(loginSchema(t))
   });
 
   const onFinish = data => {
-    console.log(data);
-    // navigate(pathnames.main);
+    dispatch(setAuth(true));
+    navigate(pathnames.main);
   };
 
   return (
@@ -29,7 +32,7 @@ const LoginPage = () => {
         <h1 tw='text-[30px] font-black mb-[20px]'>{t('auth.title')}</h1>
         <form onSubmit={handleSubmit(onFinish)}>
           <div tw='flex flex-col gap-[20px] mb-[50px]'>
-            <Input<ILoginFormValues>
+            <Input
               variant={'transparent'}
               placeholder={t('auth.username')}
               name='username'
@@ -38,7 +41,7 @@ const LoginPage = () => {
               showError={true}
               control={control}
             />
-            <Input<ILoginFormValues>
+            <Input
               variant={'transparent'}
               placeholder={t('auth.password')}
               name={'password'}
