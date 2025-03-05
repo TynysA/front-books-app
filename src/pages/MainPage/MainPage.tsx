@@ -14,7 +14,7 @@ const MainPage = () => {
   return (
     <Layout sidebarContent={SIDEBAR_ITEMS}>
       {isModalOpen && <ModalWindow type={modalType} setIsModalOpen={setIsModalOpen} modalContent={modalContent} />}
-      <Outlet />
+      <Outlet context={{ setIsModalOpen, setModalContent, setModalType }} />
     </Layout>
   );
 };

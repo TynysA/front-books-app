@@ -7,9 +7,8 @@ import { useNavigate } from 'react-router-dom';
 export const ModalWindow = props => {
   const navigate = useNavigate();
   const type = props?.type;
-  const content = props?.content;
+  const content = props?.modalContent;
   const { t } = useTranslation();
-  console.log(type, content);
   return (
     <AnimatePresence>
       <motion.div
@@ -34,8 +33,12 @@ export const ModalWindow = props => {
           }
         }}
         tw='w-[calc(100% + 20px)] h-[calc(100% + 20px)] top-[-10px] left-[-10px] flex justify-center items-center fixed z-10 backdrop-blur-[6px]'
+        onClick={() => props.setIsModalOpen(false)}
       >
-        <div tw='rounded-[20px] border-[2px] border-[rgba(0, 0, 0, 0.20)] bg-white p-[30px] w-[690px]'>
+        <div
+          tw='rounded-[20px] border-[2px] border-[rgba(0, 0, 0, 0.20)] bg-white p-[30px] w-[690px]'
+          onClick={e => e.stopPropagation()}
+        >
           {/*{ModalComponent && (*/}
           {/*  <ModalComponent*/}
           {/*    {...{ handleClose, handleFunction, isLoading, variablesLoading, taskId, data, modalContent }}*/}

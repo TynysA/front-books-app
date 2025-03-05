@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import ProtectedApp from '@/app/ProtectedApp.tsx';
@@ -10,9 +9,8 @@ import WelcomePage from '@/pages/WelcomePage/WelcomePage.tsx';
 import { pathnames } from '@/shared/lib/constants';
 
 function AuthChecker({ children }: { children: ReactNode }) {
-  const isAuth1 = useTypedSelector(state => state.auth.isAuth);
-  const isAuth2 = useSelector((state: RootState) => state.auth.isAuth);
-  if (!isAuth1) return <Navigate to={pathnames.login} replace />;
+  const isAuth = useTypedSelector(state => state.auth.isAuth);
+  if (!isAuth) return <Navigate to={pathnames.login} replace />;
   return children;
 }
 
