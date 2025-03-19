@@ -28,7 +28,7 @@ const MainLangSwitcher = ({ i18n, changeLocale }: ISwitcher) => {
     <div tw='relative'>
       <button tw='p-[10px]' onClick={toggleMenu}>
         <div tw='flex justify-center items-center gap-[6px]'>
-          <span>{i18n.language === 'ru' ? 'RUS' : 'ENG'}</span>
+          <span>{i18n.language === 'ru' ? 'РУС' : 'ENG'}</span>
           <Expand
             twstyle={isMenuOpen ? tw`rotate-180 transition-transform` : tw`transition-transform`}
             fill={'var(--font-primary)'}
@@ -70,7 +70,7 @@ const MainLangSwitcher = ({ i18n, changeLocale }: ISwitcher) => {
             tw='absolute left-[10px]'
           >
             <button onClick={() => changeLocale(i18n.language === 'ru' ? 'en' : 'ru')}>
-              {i18n.language === 'ru' ? 'ENG' : 'RUS'}
+              {i18n.language === 'ru' ? 'ENG' : 'РУС'}
             </button>
           </motion.div>
         )}
