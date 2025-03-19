@@ -7,4 +7,5 @@ export interface ILayout {
     content: string;
     isChild?: boolean;
   }[];
+  hiddenSidebarItems: string[];
 }

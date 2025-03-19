@@ -41,7 +41,7 @@ export default defineConfig(userConfig => {
     plugins: [
       react({
         babel: {
-          plugins: ['babel-plugin-macros']
+          plugins: ['babel-plugin-macros', '@emotion/babel-plugin']
         }
       }),
       macrosPlugin()

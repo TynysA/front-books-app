@@ -10,8 +10,6 @@ export const messageByCode = (code: string | number) => {
       return i18n.t('messages.password-invalid');
     case 'CHECK_OTP_ERROR':
       return i18n.t('messages.otp-error');
-    case 10001:
-      return i18n.t('messages.insurConsult-error');
     default:
       return code;
   }
