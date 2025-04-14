@@ -31,7 +31,7 @@ const MainLangSwitcher = ({ i18n, changeLocale }: ISwitcher) => {
           <span>{i18n.language === 'ru' ? 'РУС' : 'ENG'}</span>
           <Expand
             twstyle={isMenuOpen ? tw`rotate-180 transition-transform` : tw`transition-transform`}
-            fill={'var(--font-primary)'}
+            fill={'#FFFFFF'}
           />
         </div>
       </button>
@@ -69,7 +69,7 @@ const MainLangSwitcher = ({ i18n, changeLocale }: ISwitcher) => {
             }}
             tw='absolute left-[10px]'
           >
-            <button onClick={() => changeLocale(i18n.language === 'ru' ? 'en' : 'ru')}>
+            <button onClick={() => changeLocale(i18n.language === 'ru' ? 'eng' : 'ru')}>
               {i18n.language === 'ru' ? 'ENG' : 'РУС'}
             </button>
           </motion.div>

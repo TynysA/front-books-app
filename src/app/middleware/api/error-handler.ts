@@ -29,7 +29,7 @@ export const errorHandler =
           action.type == 'api/executeQuery/rejected'
         )
       ) {
-        toast.error((() => i18n.t('messages.client-error'))(), {
+        toast.error((() => action.payload.data.message)(), {
           position: 'top-center',
           hideProgressBar: true,
           autoClose: 10000

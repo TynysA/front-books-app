@@ -1,5 +1,6 @@
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import ProtectedApp from '@/app/ProtectedApp.tsx';
 import { useTypedSelector } from '@/app/store';
@@ -16,19 +17,22 @@ function AuthChecker({ children }: { children: ReactNode }) {
 
 function App() {
   return (
-    <Routes>
-      <Route path={pathnames.login} element={<LoginPage />} />
-      <Route path={pathnames.welcome} element={<WelcomePage />} />
-      <Route path={pathnames.register} element={<RegisterPage />} />
-      <Route
-        path={'*'}
-        element={
-          <AuthChecker>
-            <ProtectedApp />
-          </AuthChecker>
-        }
-      />
-    </Routes>
+    <Fragment>
+      <ToastContainer theme={'dark'} />
+      <Routes>
+        <Route path={pathnames.login} element={<LoginPage />} />
+        <Route path={pathnames.welcome} element={<WelcomePage />} />
+        <Route path={pathnames.register} element={<RegisterPage />} />
+        <Route
+          path={'*'}
+          element={
+            <AuthChecker>
+              <ProtectedApp />
+            </AuthChecker>
+          }
+        />
+      </Routes>
+    </Fragment>
   );
 }
 

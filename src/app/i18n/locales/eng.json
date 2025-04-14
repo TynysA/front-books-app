@@ -29,7 +29,8 @@
   "validations": {
     "checkbox-required": "Your consent is required",
     "required": "Please fill in this field",
-    "required-all": "Please fill in all fields"
+    "required-all": "Please fill in all fields",
+    "password-length": "Пароль должен быть не менее 4 символов"
   },
   "welcome": {
     "student-title": "If you are a student or schoolchild",

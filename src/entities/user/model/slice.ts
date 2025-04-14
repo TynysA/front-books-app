@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { authApi } from '@/entities/user';
+
 import { IAuthState } from './types';
 
 const initialState: IAuthState = {
@@ -25,21 +27,22 @@ export const authSlice = createSlice({
       state.tokens.apiGatewayAccess = payload.token;
     },
     setUserData: (state, { payload }) => {
+      console.log(payload);
       state.user = payload;
     },
     setAuth: (state, action: PayloadAction<boolean>) => {
       state.isAuth = action.payload;
     }
+  },
+  extraReducers: builder => {
+    builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, { payload }) => {
+      if (!state.isAuth && payload?.token) {
+        state.isAuth = true;
+        state.tokens.access = payload.token;
+        // state.tokens.refresh = payload.token.refreshToken;
+      }
+    });
   }
-  // extraReducers: builder => {
-  //   builder.addMatcher(authApi.endpoints.login.matchFulfilled, (state, { payload }) => {
-  //     if (!state.isAuth && payload?.token) {
-  //       state.isAuth = true;
-  //       state.tokens.access = payload.token.accessToken;
-  //       state.tokens.refresh = payload.token.refreshToken;
-  //     }
-  //   });
-  // }
 });
 
 export const { setAuth, logout, setCredentials, setApiGatewayCredentials, setUserData } = authSlice.actions;
