@@ -2,8 +2,10 @@ import 'twin.macro';
 
 import { useTranslation } from 'react-i18next';
 
+import { useGetBooksQuery } from '@/entities/base';
 import Container from '@/shared/ui/Container/Container.tsx';
 import Header from '@/shared/ui/Header.tsx';
+import { FullScreenLoader } from '@/widgets/FullScreenLoader';
 
 const WelcomePage = () => {
   const { t, i18n } = useTranslation();
@@ -21,6 +23,9 @@ const WelcomePage = () => {
     { id: 11, title: 'Перси Джексон: Новая эра – автор неизвестен' },
     { id: 12, title: 'Тень будущего – фанфик по миру Властелина колец' }
   ];
+  const { data, isLoading } = useGetBooksQuery();
+
+  if (isLoading) return <FullScreenLoader />;
 
   return (
     <div tw='bg-root overflow-hidden flex flex-col bg-[#4582af] gap-[15px] text-primary'>
@@ -92,14 +97,14 @@ const WelcomePage = () => {
             </div>
           </div>
           <div tw='hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            {books.map(book => (
+            {data.map(book => (
               <div key={book.id} tw='bg-white p-6 rounded-2xl shadow-lg'>
                 <img
                   alt='image'
                   tw='w-full object-cover mb-4 rounded-lg'
-                  src={`https://abdhwatiqpeztisaxtlu.supabase.co/storage/v1/object/public/books/cover/2_cover`}
+                  src={`https://abdhwatiqpeztisaxtlu.supabase.co/storage/v1/object/public/books/cover/${book.bookId}_cover`}
                 />
-                <a href={`/books/${book.id}`} tw='text-blue-500 underline block'>
+                <a href={`/books/${book.bookId}`} tw='text-blue-500 underline block'>
                   {book.title}
                 </a>
               </div>

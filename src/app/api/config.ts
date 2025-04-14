@@ -34,61 +34,34 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
   extraOptions
 ) => {
   await mutex.waitForUnlock();
+  console.log('asdkjsakd -- 1');
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 403) {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
       const refreshToken = api.getState().auth.tokens.refresh;
       api.dispatch({ type: 'auth/setCredentials', payload: { accessToken: null } });
-      try {
-        const refreshResult = await baseQuery(
-          { url: '/inline/api/auth/refresh', method: 'POST', body: { refreshToken } },
-          api,
-          extraOptions
-        );
-        if (refreshResult.data) {
-          api.dispatch({ type: 'auth/setCredentials', payload: refreshResult.data.token });
-          result = await baseQuery(args, api, extraOptions);
-        } else {
-          api.dispatch({ type: 'auth/logout' });
-        }
-      } finally {
-        release();
-      }
+      // try {
+      //   const refreshResult = await baseQuery(
+      //     { url: '/inline/api/auth/refresh', method: 'POST', body: { refreshToken } },
+      //     api,
+      //     extraOptions
+      //   );
+      //   if (refreshResult.data) {
+      //     api.dispatch({ type: 'auth/setCredentials', payload: refreshResult.data.token });
+      //     result = await baseQuery(args, api, extraOptions);
+      //   } else {
+      //     api.dispatch({ type: 'auth/logout' });
+      //   }
+      // } finally {
+      //   release();
+      // }
     } else {
       await mutex.waitForUnlock();
       result = await baseQuery(args, api, extraOptions);
     }
   }
-  if (result.error && result.error.status === 401) {
-    if (!mutex.isLocked()) {
-      const release = await mutex.acquire();
-      const refreshToken = api.getState().auth.tokens.apiGatewayRefresh;
-      api.dispatch({ type: 'auth/setApiGatewayCredentials', payload: { token: null } });
-      try {
-        const refreshResult = await baseQuery(
-          {
-            url: `${baseHttpGateway}/api/identity/authentication/GetTokenByRefresh`,
-            method: 'POST',
-            body: { refreshToken }
-          },
-          api,
-          extraOptions
-        );
-        if (refreshResult.data) {
-          api.dispatch({ type: 'auth/setApiGatewayCredentials', payload: refreshResult.data.token });
-          result = await baseQuery(args, api, extraOptions);
-        } else {
-          api.dispatch({ type: 'auth/logout' });
-        }
-      } finally {
-        release();
-      }
-    } else {
-      await mutex.waitForUnlock();
-      result = await baseQuery(args, api, extraOptions);
-    }
-  }
+  console.log('asdkjsakd -- 2', result);
   return result;
 };
 

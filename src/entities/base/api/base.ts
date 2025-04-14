@@ -3,10 +3,9 @@ import { api } from '@/app/api';
 export const baseApi = api.injectEndpoints({
   endpoints: build => ({
     getBooks: build.query({
-      query: body => ({
-        url: `/books/getAll`,
-        method: 'POST',
-        body
+      query: () => ({
+        url: `/books`,
+        method: 'GET'
       }),
       providesTags: ['Base']
     }),

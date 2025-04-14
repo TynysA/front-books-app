@@ -4,6 +4,7 @@ import localforage from 'localforage';
 import { persistReducer, persistStore } from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
+import { api } from '@/app/api';
 import { isDev } from '@/app/configs';
 import { middlewares } from '@/app/middleware';
 import { authSlice } from '@/entities/user';
@@ -18,7 +19,8 @@ const persistConfig = {
 
 export const rootReducer = () => {
   return combineReducers({
-    auth: authSlice.reducer
+    auth: authSlice.reducer,
+    [api.reducerPath]: api.reducer
   });
 };
 const persistedReducer = persistReducer<never, never>(persistConfig, rootReducer());
