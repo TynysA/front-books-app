@@ -3,6 +3,7 @@ import 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { useOutletContext } from 'react-router-dom';
 
+import { MODAL_TYPES } from '@/shared/lib/modalTypes.ts';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 
 const Books = () => {
@@ -11,6 +12,8 @@ const Books = () => {
 
   const addNewTest = () => {
     console.log('--add new test--');
+    setIsModalOpen(true);
+    setModalType(MODAL_TYPES.ADD_BOOK);
   };
   return (
     <div tw='p-[30px] rounded-[20px] flex flex-col gap-[20px] bg-primary text-primary'>

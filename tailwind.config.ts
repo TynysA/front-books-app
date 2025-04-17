@@ -56,7 +56,8 @@ export default {
         'nav-menu': '0px 30px 21.1px -24px #0000004D;',
         checkbox: '0px 2.693880796432495px 2.693880796432495px 0px #00000040',
         file: '0px 0px 40px 0px rgba(0, 0, 0, 0.05), -20px 20px 40px 0px rgba(0, 0, 0, 0.10)',
-        btn: '0px 30px 21.1px -24px #0000004D'
+        btn: '0px 30px 21.1px -24px #0000004D',
+        'material-btn': '0px 15px 20px 0px rgba(0, 0, 0, 0.20)'
       },
       zIndex: {
         ...defaultTheme.zIndex

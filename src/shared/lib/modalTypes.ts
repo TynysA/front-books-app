@@ -1,6 +1,6 @@
 export const MODAL_TYPES = {
-  OPEN_TEST: 'open_test',
-  ADD_TEST: 'add_test',
+  OPEN_BOOK: 'open_test',
+  ADD_BOOK: 'add_book',
   FORM: 'form',
   INFO: 'info'
 } as const;

@@ -4,12 +4,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
+import { getModalComponent } from '@/widgets/ModalWindow/model/constants.ts';
+
 export const ModalWindow = props => {
   const navigate = useNavigate();
   const type = props?.type;
   const content = props?.content;
   const { t } = useTranslation();
   console.log(type, content);
+  const handleClose = () => {
+    props?.setIsModalOpen(false);
+  };
+  const ModalComponent = getModalComponent(type);
   return (
     <AnimatePresence>
       <motion.div
@@ -36,12 +42,7 @@ export const ModalWindow = props => {
         tw='w-[calc(100% + 20px)] h-[calc(100% + 20px)] top-[-10px] left-[-10px] flex justify-center items-center fixed z-10 backdrop-blur-[6px]'
       >
         <div tw='rounded-[20px] border-[2px] border-[rgba(0, 0, 0, 0.20)] bg-white p-[30px] w-[690px]'>
-          {/*{ModalComponent && (*/}
-          {/*  <ModalComponent*/}
-          {/*    {...{ handleClose, handleFunction, isLoading, variablesLoading, taskId, data, modalContent }}*/}
-          {/*    {...additionalProps}*/}
-          {/*  />*/}
-          {/*)}*/}
+          {ModalComponent && <ModalComponent {...{ handleClose, modalContent: props.content }} />}
         </div>
       </motion.div>
     </AnimatePresence>
