@@ -32,7 +32,7 @@ const Header = () => {
 
   return (
     <Container>
-      <div tw='pt-[5px] pb-[20px] flex justify-between  items-center gap-[30px] text-[#fff] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
+      <div tw='pt-[3px] pb-[15px] flex justify-between  items-center gap-[30px] text-[#fff] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
         <Link to={pathnames.welcome} tw='text-[14px] lowercase font-semibold'>
           <span tw='text-[16px] uppercase font-black'>B</span>ooks 📖
           <span tw='text-[16px] uppercase font-black'>C</span>
@@ -50,7 +50,7 @@ const Header = () => {
           </div>
           <ThemeSwitcher />
           <LangSwitcher />
-          <button onClick={handleLogout} tw='p-[10px] uppercase'>
+          <button onClick={handleLogout} tw='p-[5px] uppercase'>
             {isAuth ? t('header.logout') : t('auth.login')}
           </button>
         </div>

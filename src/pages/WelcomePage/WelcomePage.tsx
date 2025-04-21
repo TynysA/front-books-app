@@ -9,20 +9,6 @@ import { FullScreenLoader } from '@/widgets/FullScreenLoader';
 
 const WelcomePage = () => {
   const { t, i18n } = useTranslation();
-  const books = [
-    { id: 1, title: 'Война и мир – Лев Толстой' },
-    { id: 2, title: 'Преступление и наказание – Фёдор Достоевский' },
-    { id: 3, title: 'Гордость и предубеждение – Джейн Остин' },
-    { id: 4, title: 'Гарри Поттер и философский камень – Дж. К. Роулинг' },
-    { id: 5, title: 'Тонкое искусство пофигизма – Марк Мэнсон' },
-    { id: 6, title: 'Бегущий в лабиринте – Джеймс Дэшнер' },
-    { id: 7, title: 'Атомные привычки – Джеймс Клир' },
-    { id: 8, title: 'Думай и богатей – Наполеон Хилл' },
-    { id: 9, title: 'Сапиенс: Краткая история человечества – Юваль Ной Харари' },
-    { id: 10, title: 'Гарри Поттер и методы рационального мышления – Элиезер Юдковский' },
-    { id: 11, title: 'Перси Джексон: Новая эра – автор неизвестен' },
-    { id: 12, title: 'Тень будущего – фанфик по миру Властелина колец' }
-  ];
   const { data, isLoading } = useGetBooksQuery();
 
   if (isLoading) return <FullScreenLoader />;
@@ -98,16 +84,24 @@ const WelcomePage = () => {
           </div>
           <div tw='hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {data.map(book => (
-              <div key={book.id} tw='bg-white p-6 rounded-2xl shadow-lg'>
+              <a
+                key={book.id}
+                href={`/books/${book.bookId}`}
+                tw='bg-white p-6 rounded-2xl shadow-lg cursor-pointer flex flex-col gap-[20px] no-underline'
+              >
                 <img
-                  alt='image'
-                  tw='w-full object-cover mb-4 rounded-lg'
+                  title={book.title}
+                  alt={`image_${book.bookId}`}
+                  tw='w-full aspect-[1/1.5] object-cover rounded-lg'
                   src={`https://abdhwatiqpeztisaxtlu.supabase.co/storage/v1/object/public/books/cover/${book.bookId}_cover`}
                 />
-                <a href={`/books/${book.bookId}`} tw='text-blue-500 underline block'>
+                <span
+                  tw='block text-ellipsis whitespace-nowrap overflow-hidden text-black text-[16px] font-medium'
+                  title={book.title}
+                >
                   {book.title}
-                </a>
-              </div>
+                </span>
+              </a>
             ))}
           </div>
         </div>

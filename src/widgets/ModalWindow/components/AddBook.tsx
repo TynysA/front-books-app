@@ -40,8 +40,8 @@ const AddBook = props => {
   return (
     <form tw='flex flex-col gap-[20px]' onSubmit={handleSubmit(addBook)}>
       <h2 tw='text-[#0F2920] text-[22px] font-semibold leading-[100%] text-center'>{t('books.add-book')}</h2>
-      <Input type='text' control={control} id={'title'} name='title' placeholder='Title' />
-      <Input type='text' control={control} id={'author'} name='author' placeholder='author' />
+      <Input type='text' control={control} id={'title'} name='title' placeholder={t('books.title')} />
+      <Input type='text' control={control} id={'author'} name='author' placeholder={t('books.author')} />
       <Textarea
         control={control}
         showErrorBorder={true}
