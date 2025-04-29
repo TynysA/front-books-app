@@ -16,8 +16,37 @@ export const baseApi = api.injectEndpoints({
         body
       }),
       invalidatesTags: ['Base']
+    }),
+    getOneBook: build.query({
+      query: id => ({
+        url: `/books/${id}`,
+        method: 'GET'
+      }),
+      invalidatesTags: ['Base']
+    }),
+    addBook: build.mutation({
+      query: body => ({
+        url: `/books/add`,
+        method: 'POST',
+        body
+      }),
+      invalidatesTags: ['Base']
+    }),
+    addFiles: build.mutation({
+      query: body => ({
+        url: `/books/upload`,
+        method: 'POST',
+        body
+      }),
+      invalidatesTags: ['Base']
     })
   })
 });
 
-export const { useGetBooksQuery, useGetBooksListMutation } = baseApi;
+export const {
+  useGetBooksQuery,
+  useGetOneBookQuery,
+  useGetBooksListMutation,
+  useAddBookMutation,
+  useAddFilesMutation
+} = baseApi;

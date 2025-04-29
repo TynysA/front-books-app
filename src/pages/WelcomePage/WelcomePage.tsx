@@ -86,7 +86,7 @@ const WelcomePage = () => {
             {data.map(book => (
               <a
                 key={book.id}
-                href={`/books/${book.bookId}`}
+                href={`/book/${book.bookId}`}
                 tw='bg-white p-6 rounded-2xl shadow-lg cursor-pointer flex flex-col gap-[20px] no-underline'
               >
                 <img
