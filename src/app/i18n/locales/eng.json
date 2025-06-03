@@ -1,11 +1,31 @@
 {
+  "welcome": {
+    "welcomeTitle": "📖 Welcome to the world of books – read, upload, and share!",
+    "welcomeText1": "Reading is not just a hobby, it’s a whole world that opens up to anyone who picks up a book. Some love immersing themselves in classical works, enjoying the refined style of past authors, while others prefer modern literature filled with dynamic plots and vivid emotions.",
+    "welcomeText2": "Our site is created for everyone who values books and wants free access to knowledge and entertainment. Here you can <1>read, download, and upload</1> books <3>completely free</3>.",
+    "searchTitle": "🔍 Easy search and wide selection",
+    "searchText": "We've built a library where you'll find books <1>in various formats – PDF, EPUB, FB2, MOBI, and more</1>. This means you can choose your preferred reading method – smartphone screen, e-reader, or computer.",
+    "searchList": {
+      "classic": "📚 <1>Classical literature</1> – timeless works that remain relevant forever.",
+      "bestsellers": "🔥 <1>Modern bestsellers</1> – books loved by millions of readers around the world.",
+      "nonFiction": "📖 <1>Non-fiction</1> – books that help you learn, grow, and find new ideas.",
+      "genres": "✨ <1>Fantasy, sci-fi, detective stories, romance</1>, scientific papers, self-development books, and much more.",
+      "fanfics": "📝 <1>Fanfics</1> – alternative stories and creative reimaginings of beloved universes."
+    },
+    "shareTitle": "📤 Share your book",
+    "shareText1": "Our project is open to everyone! If you have an interesting book you'd like to share, <1>upload it</1>. The administration will review your file or request and add it to the library so other readers can enjoy it too.",
+    "shareWarning": "💡 <1>Important!</1> Before submitting a book, be sure to read the <3>upload rules</3>. We monitor content quality and respect copyright.",
+    "shareText2": "📚 Discover the endless world of books! Read with pleasure, find new stories, share your favorite works, and enjoy the magic of words! 🚀"
+  },
+  "light": "Light theme",
+  "dark": "Dark theme",
   "header": {
     "profile": "Profile",
     "logout": "Logout"
   },
   "auth": {
     "title": "Login",
-    "login": "Sign in",
+    "login": "Log in",
     "username": "Username",
     "password": "Password"
   },
@@ -28,34 +48,21 @@
   },
   "validations": {
     "checkbox-required": "Your consent is required",
-    "required": "Please fill in this field",
-    "required-all": "Please fill in all fields",
-    "password-length": "Пароль должен быть не менее 4 символов"
-  },
-  "welcome": {
-    "student-title": "If you are a student or schoolchild",
-    "teacher-title": "If you are a teacher or event/work supervisor",
-    "student-points1": "We help you prepare for exams and tests",
-    "student-points2": "You can take tests without even registering",
-    "teacher-points1": "You can see the test results on the platform",
-    "teacher-points2": "You can select multiple tests and see the overall results",
-    "teacher-points3": "We can help collect job or event satisfaction results"
+    "required": "Please fill out the field",
+    "required-all": "Please fill in all the fields",
+    "password-length": "Password must be at least 4 characters"
   },
   "main": {
-    "tests": "List of tests",
-    "scores": "Participant results"
+    "books": "List of added books",
+    "scores": "Participants' results"
   },
-  "tests": {
-    "create": "Create a new test",
-    "title": "Test title",
-    "questions_count": "Number of questions",
-    "categories": "Categories"
-  },
-  "scores": {
-    "test_title": "Test title",
-    "test_description": "Test description",
-    "is_passed": "Passed",
-    "completed_at": "Completed at",
-    "score": "Score"
+  "books": {
+    "create": "Add a new book",
+    "title": "Book title",
+    "categories": "Categories",
+    "authors": "Authors",
+    "language": "Language",
+    "RU": "Russian",
+    "ENG": "English"
   }
 }

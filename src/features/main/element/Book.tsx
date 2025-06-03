@@ -51,7 +51,7 @@ const Book = () => {
             </div>
 
             <div tw='text-black text-[16px] md:text-[18px]'>
-              <strong>{t('book.language')}:</strong> {book.language || 'N/A'}
+              <strong>{t('book.language')}:</strong> {book.language ? t(`books.${book.language}`) : 'N/A'}
             </div>
           </div>
         </div>

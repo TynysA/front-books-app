@@ -27,7 +27,6 @@ export const authSlice = createSlice({
       state.tokens.apiGatewayAccess = payload.token;
     },
     setUserData: (state, { payload }) => {
-      console.log(payload);
       state.user = payload;
     },
     setAuth: (state, action: PayloadAction<boolean>) => {

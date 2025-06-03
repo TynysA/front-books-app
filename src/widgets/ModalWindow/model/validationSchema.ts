@@ -3,7 +3,7 @@ import * as yup from 'yup';
 export const addBookModalSchema = t =>
   yup.object({
     title: yup.string().required(t('validations.required')),
-    author: yup
+    authors: yup
       .array()
       .of(
         yup.object({

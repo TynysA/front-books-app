@@ -34,7 +34,6 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
   extraOptions
 ) => {
   await mutex.waitForUnlock();
-  console.log('asdkjsakd -- 1');
   let result = await baseQuery(args, api, extraOptions);
   if (result.error && result.error.status === 403) {
     if (!mutex.isLocked()) {
@@ -61,7 +60,6 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
       result = await baseQuery(args, api, extraOptions);
     }
   }
-  console.log('asdkjsakd -- 2', result);
   return result;
 };
 

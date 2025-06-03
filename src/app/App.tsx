@@ -12,6 +12,7 @@ import { pathnames } from '@/shared/lib/constants';
 
 function AuthChecker({ children }: { children: ReactNode }) {
   const isAuth = useTypedSelector(state => state.auth.isAuth);
+  console.log(isAuth);
   if (!isAuth) return <Navigate to={pathnames.login} replace />;
   return children;
 }
