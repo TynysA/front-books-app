@@ -28,11 +28,12 @@ const LoginPage = () => {
     try {
       const loginResponse = await fetchLogin({ username, password }).unwrap();
       if (!loginResponse.errorCode) {
-        if (loginResponse.user.role === 'ADMIN') {
-          console.log(loginResponse.user.role);
-        }
         dispatch(setUserData(loginResponse.user));
-        navigate(pathnames.main);
+        if (loginResponse.user.role === 'ADMIN') {
+          navigate(pathnames.main);
+        } else if (loginResponse.user.role === 'USER') {
+          navigate(pathnames.welcome);
+        }
       }
     } catch (e) {
       console.log(e);

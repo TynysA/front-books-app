@@ -24,6 +24,13 @@ export const baseApi = api.injectEndpoints({
       }),
       invalidatesTags: ['Base']
     }),
+    getAuthors: build.query({
+      query: () => ({
+        url: `/books/authors`,
+        method: 'GET'
+      }),
+      invalidatesTags: ['Base']
+    }),
     addBook: build.mutation({
       query: body => ({
         url: `/books/add`,
@@ -46,6 +53,7 @@ export const baseApi = api.injectEndpoints({
 export const {
   useGetBooksQuery,
   useGetOneBookQuery,
+  useGetAuthorsQuery,
   useGetBooksListMutation,
   useAddBookMutation,
   useAddFilesMutation

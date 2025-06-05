@@ -12,10 +12,14 @@ const MainPage = () => {
   const [modalContent, setModalContent] = useState(null);
   const [modalType, setModalType] = useState('');
   return (
-    <Layout sidebarContent={SIDEBAR_ITEMS}>
-      {isModalOpen && <ModalWindow type={modalType} setIsModalOpen={setIsModalOpen} modalContent={modalContent} />}{' '}
-      <Outlet context={{ setIsModalOpen, setModalContent, setModalType }} />
-    </Layout>
+    <div tw='mt-[15px]'>
+      <Layout sidebarContent={SIDEBAR_ITEMS}>
+        {isModalOpen && <ModalWindow type={modalType} setIsModalOpen={setIsModalOpen} modalContent={modalContent} />}{' '}
+        <div tw='mb-[15px]'>
+          <Outlet context={{ setIsModalOpen, setModalContent, setModalType }} />
+        </div>
+      </Layout>
+    </div>
   );
 };
 

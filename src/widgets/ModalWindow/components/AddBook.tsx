@@ -6,26 +6,23 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import tw from 'twin.macro';
 
-import { useAddBookMutation, useAddFilesMutation } from '@/entities/base';
+import { useAddBookMutation, useAddFilesMutation, useGetAuthorsQuery } from '@/entities/base';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 import Creatable from '@/shared/ui/actionsUI/CreatableSelect/CreatableSelect.tsx';
 import Input from '@/shared/ui/actionsUI/Input/Input.tsx';
 import { FileLoader } from '@/shared/ui/FileLoader';
 import Textarea from '@/shared/ui/Textarea/Textarea.tsx';
-import { FullScreenLoader } from '@/widgets/FullScreenLoader';
+import { BackdropLoader } from '@/widgets/BackdropLoader';
+// import { BackdropLoader } from '@/widgets/BackdropLoader';
 import { addBookModalSchema } from '@/widgets/ModalWindow/model/validationSchema.ts';
 
-const authors = [
-  { label: 'Лев Николаевич Толстой', value: 'Лев Николаевич Толстой' },
-  { label: 'Юрий Винокуров', value: 'Юрий Винокуров' },
-  { label: 'Джейн Остин', value: 'Джейн Остин' }
-];
 const AddBook = props => {
   const { t } = useTranslation();
   const [file, setFile] = useState<File | null>(null);
   const [cover, setCover] = useState<File | null>(null);
   const [fetchAddBook, { isLoading }] = useAddBookMutation();
   const [fetchAddFiles, { isLoading: fileLoading }] = useAddFilesMutation();
+  const { data: authors, isLoading: authorsLoading } = useGetAuthorsQuery();
 
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
@@ -43,11 +40,11 @@ const AddBook = props => {
   const addBook = data => {
     console.log(data);
   };
-  if (isLoading || fileLoading) return <FullScreenLoader />;
 
   return (
     <form tw='flex flex-col gap-[20px]' onSubmit={handleSubmit(addBook)}>
-      <h2 tw='text-[#0F2920] text-[22px] font-semibold leading-[100%] text-center'>{t('books.add-book')}</h2>
+      {(isLoading || fileLoading || authorsLoading) && <BackdropLoader />}
+      <h2 tw='text-[#0F2920] text-[22px] font-semibold leading-[100%] text-center'>{t('books.create')}</h2>
       <Input type='text' control={control} id={'title'} name='title' placeholder={t('books.title')} />
       <Creatable options={authors} control={control} name='authors' placeholder={t('books.authors')} id={'authors'} />
       {/*<Input type='text' control={control} id={'author'} name='author' placeholder={t('books.author')} />*/}

@@ -11,7 +11,6 @@ const Books = () => {
   const { setIsModalOpen, setModalType, setModalContent } = useOutletContext<IOutletProps>();
 
   const addNewTest = () => {
-    console.log('--add new test--');
     setIsModalOpen(true);
     setModalType(MODAL_TYPES.ADD_BOOK);
   };

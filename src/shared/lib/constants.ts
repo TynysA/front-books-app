@@ -4,5 +4,5 @@ export const pathnames = {
   welcome: '/',
   book: '/book/:id',
   main: '/main',
-  scores: '/main/scores'
+  books_from_users: '/main/from-users'
 };

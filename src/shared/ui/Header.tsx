@@ -31,31 +31,33 @@ const Header = () => {
   };
 
   return (
-    <Container>
-      <div tw='pt-[3px] pb-[15px] flex justify-between  items-center gap-[30px] text-[#fff] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
-        <Link to={pathnames.welcome} tw='text-[14px] lowercase font-semibold'>
-          <span tw='text-[16px] uppercase font-black'>B</span>ooks 📖
-          <span tw='text-[16px] uppercase font-black'>C</span>
-          astle🏰
-        </Link>
-        <div tw='flex gap-[20px]  items-center'>
-          <div tw='flex gap-[15px] hidden'>
-            <div id={'search'}>
-              <input
-                tw='outline-none border-[1px] border-[#00000080] rounded-[8px] py-[5px] px-[15px] bg-white'
-                type='search'
-                onChange={handleSearch}
-              />
+    <div tw='bg-[#4582af] '>
+      <Container>
+        <div tw='pt-[3px] pb-[15px] flex justify-between  items-center gap-[30px] text-[#fff] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
+          <Link to={pathnames.welcome} tw='text-[14px] lowercase font-semibold'>
+            <span tw='text-[16px] uppercase font-black'>B</span>ooks 📖
+            <span tw='text-[16px] uppercase font-black'>C</span>
+            astle🏰
+          </Link>
+          <div tw='flex gap-[20px]  items-center'>
+            <div tw='flex gap-[15px] hidden'>
+              <div id={'search'}>
+                <input
+                  tw='outline-none border-[1px] border-[#00000080] rounded-[8px] py-[5px] px-[15px] bg-white'
+                  type='search'
+                  onChange={handleSearch}
+                />
+              </div>
             </div>
+            <ThemeSwitcher />
+            <LangSwitcher />
+            <button onClick={handleLogout} tw='p-[5px] uppercase'>
+              {isAuth ? t('header.logout') : t('auth.login')}
+            </button>
           </div>
-          <ThemeSwitcher />
-          <LangSwitcher />
-          <button onClick={handleLogout} tw='p-[5px] uppercase'>
-            {isAuth ? t('header.logout') : t('auth.login')}
-          </button>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 
