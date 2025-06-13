@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*TODO: decompose this css file (variables, etc.) */
+:root {
+  --background-light: #F7F7F7;
+  --background-dark: #000000;
+
+  --background-primary-light: #FFFFFF;
+  --background-primary-dark: #1A1A1A;
+
+  --background-secondary-light: #d0d0d0;
+  --background-secondary-dark: #434343;
+
+  --background-thirdly-light: #EAECED;
+  --background-thirdly-dark: #2B2B2E;
+
+  --background-fourthly-light: #F7F7F7;
+  --background-fourthly-dark: #2B2B2E;
+
+  --background-block-light: #EAECED;
+  --background-block-dark: #3A3A3C;
+
+  --background-green-light: #B8E4C7;
+  --background-green-dark: #11583C;
+
+  --background-modal-light: #F7F7F7;
+  --background-modal-dark: #1A1A1A;
+
+  --font-color-light: #0F0F0F;
+  --font-color-dark: #FFFFFF;
+
+  --font-color-opposite-light: #FFFFFF;
+  --font-color-opposite-dark: #0F0F0F;
+
+  --font-color-secondary-light: #636366;
+  --font-color-secondary-dark: #D1D1D6;
+
+  --font-color-gray-light: #8E8E93;
+  --font-color-gray-dark: #C7C7CC;
+
+  --custom-gradient-light:linear-gradient(70.36deg, #4B3EEF 0%, #2DBBD2 100%) ;
+  --custom-gradient-dark: linear-gradient(70.36deg, #4B3EEF 0%, #2DBBD2 100%);
+
+  --border-primary-light: #DEE0E3;
+  --border-primary-dark: #2F2F2F;
+
+}
+.light {
+  --bg-root: var(--background-light);
+  --bg-primary: var(--background-primary-light);
+  --bg-secondary: var(--background-secondary-light);
+  --bg-thirdly: var(--background-thirdly-light);
+  --bg-fourthly: var(--background-fourthly-light);
+  --bg-block: var(--background-block-light);
+
+  --bg-green: var(--background-green-light);
+  --bg-dark-green: var(--background-green-dark);
+
+  --bg-modal: var(--background-modal-light);
+
+  --font-primary: var(--font-color-light);
+  --font-primary-opposite: var(--font-color-opposite-light);
+
+  --font-secondary: var(--font-color-secondary-light);
+  --font-secondary-opposite: var(--font-color-secondary-dark);
+
+  --font-gray: var(--font-color-gray-light);
+
+  --custom-gradient: var(--custom-gradient-light);
+}
+.dark {
+  --bg-root: var(--background-dark);
+  --bg-primary: var(--background-primary-dark);
+  --bg-secondary: var(--background-secondary-dark);
+  --bg-thirdly: var(--background-thirdly-dark);
+  --bg-fourthly: var(--background-fourthly-dark);
+  --bg-block: var(--background-block-dark);
+
+  --bg-green: var(--background-green-dark);
+  --bg-dark-green: var(--background-green-light);
+
+
+  --bg-modal: var(--background-modal-dark);
+
+  --font-primary: var(--font-color-dark);
+  --font-primary-opposite: var(--font-color-opposite-dark);
+
+  --font-secondary: var(--font-color-secondary-dark);
+  --font-secondary-opposite: var(--font-color-secondary-light);
+
+  --font-gray: var(--font-color-gray-dark);
+
+  --custom-gradient: var(--custom-gradient-dark);
+}
+
+
+html {
+  height: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  box-sizing: border-box;
+  outline: none !important;
+  font-family: 'MuseoSans', sans-serif;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable-table {
+  overflow-x: auto;
+  max-width: 100%;
+  position: relative;
+  scrollbar-width: unset;
+}
+
+.scrollable-table::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollable-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.scrollable-table::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Firefox scrollbar styling */
+.scrollable-table {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+html {
+  height: 100%;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  min-height: 100%;
+  color: var(--font-primary);
+  background: var(--bg-root);
+}
+#root {
+  min-height: 100dvh;
+}
+svg.ours {
+  fill: currentColor;
+}
+
+* {
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.swiper-button-disabled svg {
+  cursor: not-allowed;
+  fill: rgba(255, 255, 255, 0.06) !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.swiper-button-disabled svg path {
+  cursor: not-allowed;
+  fill: rgba(255, 255, 255, 0.1) !important;
+}
+
+input[type='date']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator,
+input[type='time']::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4f9d3a;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4f9d3a;
+  border-radius: 16px;
+  border: 3px solid #4f9d3a;
+}
+-webkit-tap-highlight-color: transparent;
+:root {
+  scrollbar-color: #4f9d3a;
+  scrollbar-width: thin;
+}
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+::placeholder {
+  text-transform: none;
+}
