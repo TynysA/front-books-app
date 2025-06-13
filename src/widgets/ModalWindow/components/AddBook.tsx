@@ -1,7 +1,7 @@
 import 'twin.macro';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import tw from 'twin.macro';
@@ -13,12 +13,18 @@ import Input from '@/shared/ui/actionsUI/Input/Input.tsx';
 import { FileLoader } from '@/shared/ui/FileLoader';
 import Textarea from '@/shared/ui/Textarea/Textarea.tsx';
 import { BackdropLoader } from '@/widgets/BackdropLoader';
-// import { BackdropLoader } from '@/widgets/BackdropLoader';
 import { addBookModalSchema } from '@/widgets/ModalWindow/model/validationSchema.ts';
+
+const authorsqq = [
+  { label: 'Лев Николаевич Толстой', value: 'Лев Николаевич Толстой' },
+  { label: 'Юрий Винокуров', value: 'Юрий Винокуров' },
+  { label: 'Джейн Остин', value: 'Джейн Остин' }
+];
 
 const AddBook = props => {
   const { t } = useTranslation();
-  const [file, setFile] = useState<File | null>(null);
+  const [epub, setEpub] = useState<File | null>(null);
+  const [fb2, setFb2] = useState<File | null>(null);
   const [cover, setCover] = useState<File | null>(null);
   const [fetchAddBook, { isLoading }] = useAddBookMutation();
   const [fetchAddFiles, { isLoading: fileLoading }] = useAddFilesMutation();
@@ -28,12 +34,22 @@ const AddBook = props => {
     mode: 'onSubmit',
     resolver: yupResolver(addBookModalSchema(t))
   });
-  const uploadFunc = e => {
-    console.log(e);
+  const uploadFunc = (e: ChangeEvent<HTMLInputElement>, docType: string) => {
+    if (e.target.files?.[0]) {
+      const file = e.target.files[0];
+      if (docType === 'epub') setEpub(file);
+      else if (docType === 'fb2') setFb2(file);
+      else if (docType === 'cover') setCover(file);
+    }
   };
-  const removeFunc = e => {
-    console.log(e);
+
+  const removeFunc = (e: MouseEvent, docType: string) => {
+    e.preventDefault();
+    if (docType === 'epub') setEpub(null);
+    else if (docType === 'fb2') setFb2(null);
+    else if (docType === 'cover') setCover(null);
   };
+
   const previewFunc = e => {
     console.log(e);
   };
@@ -47,7 +63,6 @@ const AddBook = props => {
       <h2 tw='text-[#0F2920] text-[22px] font-semibold leading-[100%] text-center'>{t('books.create')}</h2>
       <Input type='text' control={control} id={'title'} name='title' placeholder={t('books.title')} />
       <Creatable options={authors} control={control} name='authors' placeholder={t('books.authors')} id={'authors'} />
-      {/*<Input type='text' control={control} id={'author'} name='author' placeholder={t('books.author')} />*/}
       <Textarea
         control={control}
         showErrorBorder={true}
@@ -64,12 +79,18 @@ const AddBook = props => {
         previewFunc={previewFunc}
       />
       <FileLoader
-        pretext={t('books.add-file-type')}
-        docType={'file'}
-        file={file}
+        pretext={t('books.add-file-fb2')}
+        docType={'fb2'}
+        file={fb2}
         uploadFunc={uploadFunc}
         removeFunc={removeFunc}
-        previewFunc={previewFunc}
+      />
+      <FileLoader
+        pretext={t('books.add-file-epub')}
+        docType={'epub'}
+        file={epub}
+        uploadFunc={uploadFunc}
+        removeFunc={removeFunc}
       />
       <div tw='flex gap-[30px]'>
         <Button variant={'material'} twStyle={tw`grow w-[50%]`} onClick={props.handleClose} type={'button'}>

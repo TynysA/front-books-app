@@ -9,6 +9,7 @@ const Creatable = <T extends FieldValues>({
   control,
   disabled = false,
   name,
+  id,
   twStyle
 }: ICreatableSelect<T>) => {
   const customStyles = {

@@ -7,6 +7,7 @@ export interface ICreatableSelect<T> {
   control?: Control<T>;
   icon?: ReactNode;
   name: string;
+  id?: string;
   placeholder?: string;
   disabled?: boolean;
   defaultValue?: string | Array<object>;

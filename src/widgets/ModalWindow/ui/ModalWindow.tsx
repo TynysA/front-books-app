@@ -11,7 +11,6 @@ export const ModalWindow = props => {
   const type = props?.type;
   const content = props?.content;
   const { t } = useTranslation();
-  console.log(type, content);
   const handleClose = () => {
     props?.setIsModalOpen(false);
   };

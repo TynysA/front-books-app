@@ -1,3 +1,4 @@
+import { ChangeEvent, MouseEvent } from 'react';
 import { TwStyle } from 'twin.macro';
 
 export interface IFileLoader {
@@ -6,7 +7,7 @@ export interface IFileLoader {
   pretextStyle?: TwStyle;
   file: File | null;
   disabled?: boolean;
-  uploadFunc: (side: string) => void;
-  removeFunc: (doc: string) => void;
-  previewFunc: (doc: string) => void;
+  uploadFunc: (e: ChangeEvent<HTMLInputElement>, docType: string) => void;
+  removeFunc: (e: MouseEvent, docType: string) => void;
+  previewFunc?: (e: MouseEvent<HTMLButtonElement>, file: File, docType: string) => void;
 }
