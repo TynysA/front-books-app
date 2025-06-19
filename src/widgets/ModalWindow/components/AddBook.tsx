@@ -1,7 +1,7 @@
 import 'twin.macro';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, MouseEvent, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import tw from 'twin.macro';
@@ -13,13 +13,9 @@ import Input from '@/shared/ui/actionsUI/Input/Input.tsx';
 import { FileLoader } from '@/shared/ui/FileLoader';
 import Textarea from '@/shared/ui/Textarea/Textarea.tsx';
 import { BackdropLoader } from '@/widgets/BackdropLoader';
+import { IAddBook } from '@/widgets/ModalWindow/components/addBook/types.ts';
 import { addBookModalSchema } from '@/widgets/ModalWindow/model/validationSchema.ts';
 
-const authorsqq = [
-  { label: 'Лев Николаевич Толстой', value: 'Лев Николаевич Толстой' },
-  { label: 'Юрий Винокуров', value: 'Юрий Винокуров' },
-  { label: 'Джейн Остин', value: 'Джейн Остин' }
-];
 
 const AddBook = props => {
   const { t } = useTranslation();
@@ -53,8 +49,11 @@ const AddBook = props => {
   const previewFunc = e => {
     console.log(e);
   };
-  const addBook = data => {
+  const addBook = (data: IAddBook) => {
     console.log(data);
+    console.log(epub);
+    console.log(fb2);
+    console.log(cover);
   };
 
   return (

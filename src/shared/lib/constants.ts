@@ -1,6 +1,9 @@
 export const pathnames = {
   login: '/login',
   profile: '/profile',
+  profile_personal: '/profile/personal',
+  profile_comments: '/profile/comments',
+  profile_answers: '/profile/answers',
   library: '/profile/library',
   liked: '/profile/liked',
   register: '/registration',

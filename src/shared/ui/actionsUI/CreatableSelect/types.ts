@@ -13,6 +13,7 @@ export interface ICreatableSelect<T> {
   defaultValue?: string | Array<object>;
   value?: string | Array<object>;
   isSearchable?: boolean;
+  showErrorBorder?: boolean;
   rules?: object;
   twStyle?: TwStyle;
   useCustomComponent?: boolean;

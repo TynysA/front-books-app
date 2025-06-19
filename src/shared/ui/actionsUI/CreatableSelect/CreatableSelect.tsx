@@ -2,21 +2,21 @@ import { Controller, FieldValues } from 'react-hook-form';
 import CreatableSelect from 'react-select/creatable';
 
 import { ICreatableSelect } from '@/shared/ui/actionsUI/CreatableSelect/types.ts';
+import tw from 'twin.macro';
 
 const Creatable = <T extends FieldValues>({
   options = [],
   placeholder = 'Select or create an option...',
   control,
   disabled = false,
+  showErrorBorder = false,
   name,
-  id,
-  twStyle
 }: ICreatableSelect<T>) => {
   const customStyles = {
     control: (base, state) => ({
       ...base,
       backgroundColor: disabled ? '#ADADAD' : '#fff',
-      borderColor: state.isFocused ? '#7d7d7d' : '#DEE0E3',
+      borderColor: state.eror ? 'border-orange-border' : state.isFocused ? '#7d7d7d' : '#DEE0E3',
       boxShadow: 'none',
       padding: '5px',
       borderRadius: '5px',
@@ -36,11 +36,6 @@ const Creatable = <T extends FieldValues>({
     <Controller
       name={name}
       control={control}
-      // css={[
-      //   tw`relative flex items-center font-semibold leading-[100%] bg-[#fff] text-[#7d7d7d] border border-[#DEE0E3] outline-none w-full rounded-[5px] py-[13px] px-[10px]`,
-      //   disabled && tw`bg-[#ADADAD]`,
-      //   twStyle
-      // ]}
       render={({ field }) => (
         <CreatableSelect
           {...field}
