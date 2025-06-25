@@ -27,6 +27,9 @@ const ProtectedApp = () => {
           <Route index element={<ProfileInfo />} />
           <Route path={pathnames.library} element={<Library />} />
           <Route path={pathnames.liked} element={<Liked />} />
+          <Route path={pathnames.profile_personal} element={<Library />} />
+          <Route path={pathnames.profile_comments} element={<Liked />} />
+          <Route path={pathnames.profile_answers} element={<Liked />} />
         </Route>
         <Route path={'/*'} element={<Navigate to={pathnames.main} replace />} />
       </Routes>

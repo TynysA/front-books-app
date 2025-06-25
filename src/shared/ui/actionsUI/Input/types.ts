@@ -27,3 +27,16 @@ export interface IInput {
   rightIcon?: ReactNode;
   label: string;
 }
+export interface IDummyInput {
+  value?: string;
+  id: string;
+  placeholder: string;
+  type: string;
+  hasLabel?: boolean;
+  disabled?: boolean;
+  defaultTouched?: boolean;
+  variant?: keyof IInputVariants;
+  icon?: ReactNode;
+  onChange?: (value: any) => void;
+  twStyle?: TwStyle;
+}

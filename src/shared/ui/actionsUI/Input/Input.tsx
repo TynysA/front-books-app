@@ -235,6 +235,7 @@ export const DummyInput = ({
   variant = 'light',
   icon,
   hasLabel = false,
+  onChange,
   defaultTouched = false,
   twStyle
 }: IDummyInput) => {
@@ -262,7 +263,7 @@ export const DummyInput = ({
       <div css={[isTouched && tw`flex flex-col items-start gap-[4px] w-full`]}>
         <span
           css={[
-            tw`absolute text-[12px] leading-[100%] text-[#D3D3D3] opacity-0 transition-opacity`,
+            tw`absolute text-[14px] leading-[100%] text-[#D3D3D3] opacity-0 transition-opacity`,
             isTouched && tw`relative opacity-100`
           ]}
         >
@@ -277,6 +278,7 @@ export const DummyInput = ({
           onBlur={onBlurHandler}
           disabled={disabled}
           defaultValue={defaultValue}
+          onChange={onChange ? onChange : undefined}
           css={[
             tw`w-full text-[#7d7d7d] text-[16px] placeholder:text-[#7d7d7d] placeholder:font-semibold placeholder:leading-[100%] placeholder:text-[14px] focus:shadow-none bg-transparent outline-none`,
             twStyle

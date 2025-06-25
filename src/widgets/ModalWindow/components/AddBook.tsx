@@ -16,7 +16,6 @@ import { BackdropLoader } from '@/widgets/BackdropLoader';
 import { IAddBook } from '@/widgets/ModalWindow/components/addBook/types.ts';
 import { addBookModalSchema } from '@/widgets/ModalWindow/model/validationSchema.ts';
 
-
 const AddBook = props => {
   const { t } = useTranslation();
   const [epub, setEpub] = useState<File | null>(null);
@@ -72,6 +71,7 @@ const AddBook = props => {
       <FileLoader
         pretext={t('books.add-cover')}
         docType={'cover'}
+        accept={'image/*'}
         file={cover}
         uploadFunc={uploadFunc}
         removeFunc={removeFunc}
@@ -80,6 +80,7 @@ const AddBook = props => {
       <FileLoader
         pretext={t('books.add-file-fb2')}
         docType={'fb2'}
+        accept={'.fb2'}
         file={fb2}
         uploadFunc={uploadFunc}
         removeFunc={removeFunc}
@@ -87,6 +88,7 @@ const AddBook = props => {
       <FileLoader
         pretext={t('books.add-file-epub')}
         docType={'epub'}
+        accept={'.epub'}
         file={epub}
         uploadFunc={uploadFunc}
         removeFunc={removeFunc}

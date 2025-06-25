@@ -4,6 +4,7 @@ import { TwStyle } from 'twin.macro';
 export interface IFileLoader {
   pretext: string;
   docType: string;
+  accept?: string;
   pretextStyle?: TwStyle;
   file: File | null;
   disabled?: boolean;

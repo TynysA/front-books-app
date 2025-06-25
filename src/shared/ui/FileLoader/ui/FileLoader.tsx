@@ -16,6 +16,7 @@ export const FileLoader = ({
   removeFunc,
   previewFunc,
   docType,
+  accept,
   pretextStyle,
   disabled = false
 }: IFileLoader) => {
@@ -40,6 +41,7 @@ export const FileLoader = ({
           <input
             disabled={disabled}
             ref={inputRef}
+            accept={accept ? accept : undefined}
             type='file'
             tw='hidden'
             onChange={(e: ChangeEvent<HTMLInputElement>) => uploadFunc(e, docType)}

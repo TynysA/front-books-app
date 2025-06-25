@@ -25,12 +25,12 @@ const RegisterPage = () => {
   };
   const roleList = [
     {
-      label: t('auth.role.teacher'),
-      value: 'Teacher'
+      label: t('auth.role.user'),
+      value: 'User'
     },
     {
-      label: t('auth.role.student'),
-      value: 'Student'
+      label: t('auth.role.admin'),
+      value: 'admin'
     }
   ];
 
