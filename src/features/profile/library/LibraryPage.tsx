@@ -1,6 +1,6 @@
 import 'twin.macro';
 
-const Library = () => {
+const LibraryPage = () => {
   return (
     <div tw='mt-[15px]'>
       <div>Library</div>
@@ -8,4 +8,4 @@ const Library = () => {
   );
 };
 
-export default Library;
+export default LibraryPage;

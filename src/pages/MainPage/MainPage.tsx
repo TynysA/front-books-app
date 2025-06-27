@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { SIDEBAR_ITEMS } from '@/pages/MainPage/model';
+import Container from '@/shared/ui/Container/Container.tsx';
 import Layout from '@/shared/ui/Layout/Layout.tsx';
 import { ModalWindow } from '@/widgets/ModalWindow';
-import Container from '@/shared/ui/Container/Container.tsx';
 
 const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

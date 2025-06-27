@@ -3,12 +3,13 @@ import 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { useOutletContext } from 'react-router-dom';
 
+import { IOutletProps } from '@/features/main/types.ts';
 import { MODAL_TYPES } from '@/shared/lib/modalTypes.ts';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 
 const Books = () => {
   const { t } = useTranslation();
-  const { setIsModalOpen, setModalType, setModalContent } = useOutletContext<IOutletProps>();
+  const { setIsModalOpen, setModalType } = useOutletContext<IOutletProps>();
 
   const addNewTest = () => {
     setIsModalOpen(true);

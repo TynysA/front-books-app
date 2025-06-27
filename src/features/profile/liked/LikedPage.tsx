@@ -1,6 +1,6 @@
 import 'twin.macro';
 
-const Liked = () => {
+const LikedPage = () => {
   return (
     <div tw='mt-[15px]'>
       <div>liked</div>
@@ -8,4 +8,4 @@ const Liked = () => {
   );
 };
 
-export default Liked;
+export default LikedPage;

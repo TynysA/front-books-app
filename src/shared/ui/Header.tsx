@@ -1,38 +1,21 @@
 import 'twin.macro';
 
-import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
-import tw from 'twin.macro';
+import { Link } from 'react-router-dom';
 
-import { useTypedDispatch, useTypedSelector } from '@/app/store';
-import { setAuth } from '@/entities/user';
-import ProfileIcon from '@/shared/assets/icons/ProfileIcon.tsx';
+import { useTypedSelector } from '@/app/store';
 import { pathnames } from '@/shared/lib/constants';
 import Container from '@/shared/ui/Container/Container.tsx';
 import { LangSwitcher, ThemeSwitcher } from '@/shared/ui/Switchers';
+import UserMenu from '@/shared/ui/Switchers/UserMenu/UserMenu.tsx';
 
 const Header = () => {
-  const { t } = useTranslation();
   const { isAuth, user } = useTypedSelector(state => state.auth);
-  const navigate = useNavigate();
-  const dispatch = useTypedDispatch();
 
   // const { user } = useTypedSelector(state => state.auth);
 
-  const handleLogout = async () => {
-    try {
-      dispatch(setAuth(false));
-      navigate(pathnames.login);
-      window.location.reload();
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const handleSearch = async value => {
     console.log(value);
   };
-
-  console.log(user);
   return (
     <div tw='bg-[#4582af] '>
       <Container>
@@ -57,13 +40,7 @@ const Header = () => {
             {/*<button onClick={handleLogout} tw='p-[5px] uppercase'>*/}
             {/*  {isAuth ? t('header.logout') : t('auth.login')}*/}
             {/*</button>*/}
-            {isAuth ? (
-              <Link to={pathnames.profile} tw='flex items-center gap-[8px] cursor-pointer'>
-                {user?.username} <ProfileIcon twstyle={tw`w-[24px] h-[25px]`} />
-              </Link>
-            ) : (
-              <div>{t('auth.login')}</div>
-            )}
+            <UserMenu isAuth={isAuth} user={user} />
           </div>
         </div>
       </Container>
