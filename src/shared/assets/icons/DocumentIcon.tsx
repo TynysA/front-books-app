@@ -1,9 +1,7 @@
-import { SVGProps } from 'react';
-import { JSX } from 'react/jsx-runtime';
-
-export default function DocumentIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+import { IIconProps } from './model/IIcon.ts';
+export default function DocumentIcon(props: IIconProps) {
   return (
-    <svg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg {...props} width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path d='M17.7383 2.92578L19.8584 5.0559L17.7383 2.92578Z' fill='#4EBC73' />
       <path
         d='M14.8105 2.0293H16.224C16.596 2.03197 16.9526 2.17818 17.2194 2.4374L20.3747 5.59272C20.6339 5.85953 20.7801 6.21611 20.7828 6.5881V8.00154H16.8013C16.2733 8.00154 15.767 7.79181 15.3936 7.41847C15.0203 7.04513 14.8105 6.53877 14.8105 6.0108V2.0293Z'

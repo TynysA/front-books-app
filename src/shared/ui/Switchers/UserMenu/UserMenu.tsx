@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import tw from 'twin.macro';
 
 import { useTypedDispatch } from '@/app/store';
-import { setAuth } from '@/entities/user';
+import { logout } from '@/entities/user';
 import ProfileIcon from '@/shared/assets/icons/ProfileIcon.tsx';
 import { pathnames } from '@/shared/lib/constants.ts';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
@@ -20,11 +20,10 @@ const UserMenu = ({ user, isAuth }: { user: any; isAuth: boolean }) => {
     if (hideTimeout.current) clearTimeout(hideTimeout.current);
     setIsOpen(true);
   };
-  const handleLogout = () => {
+  const handleLogout = async () => {
     try {
-      dispatch(setAuth(false));
+      dispatch(logout());
       navigate(pathnames.login);
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -32,7 +31,7 @@ const UserMenu = ({ user, isAuth }: { user: any; isAuth: boolean }) => {
   const handleMouseLeave = () => {
     hideTimeout.current = setTimeout(() => {
       setIsOpen(false);
-    }, 15000); // 15 секунд
+    }, 600); // 15 секунд
   };
 
   if (!isAuth) {
@@ -46,7 +45,7 @@ const UserMenu = ({ user, isAuth }: { user: any; isAuth: boolean }) => {
       </div>
 
       {isOpen && (
-        <div tw='absolute text-[#333] font-semibold text-left right-0 mt-3 bg-white shadow-lg p-3 flex flex-col gap-2 z-50 min-w-[150px]'>
+        <div tw='absolute text-[#333] font-semibold text-right right-0 mt-3 bg-white shadow-lg p-3 flex flex-col gap-2 z-50 min-w-[150px]'>
           <Link to={pathnames.profile} tw='hover:text-blue-500'>
             {t('profile.profile')}
           </Link>
@@ -56,7 +55,9 @@ const UserMenu = ({ user, isAuth }: { user: any; isAuth: boolean }) => {
           <Link to={pathnames.liked} tw='hover:text-blue-500'>
             {t('profile.liked')}
           </Link>
-          <Button onClick={handleLogout}>{t('auth.logout')}</Button>
+          <Button onClick={handleLogout} twStyle={tw`py-[5px]`}>
+            {t('header.logout')}
+          </Button>
         </div>
       )}
     </div>

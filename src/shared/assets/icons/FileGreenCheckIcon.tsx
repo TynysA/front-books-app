@@ -1,7 +1,5 @@
-import { SVGProps } from 'react';
-import { JSX } from 'react/jsx-runtime';
-
-export default function FileGreenCheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+import { IIconProps } from './model/IIcon.ts';
+export default function FileGreenCheckIcon(props: IIconProps) {
   return (
     <svg
       className='ours'

@@ -9,5 +9,6 @@ export const infoLinks = [
   { link: pathnames.profile, label: 'infoProfile' },
   { link: pathnames.profile_personal, label: 'personal' },
   { link: pathnames.profile_comments, label: 'comments' },
-  { link: pathnames.profile_answers, label: 'answers' }
+  { link: pathnames.profile_answers, label: 'answers' },
+  { link: pathnames.profile_works, label: 'works' }
 ];

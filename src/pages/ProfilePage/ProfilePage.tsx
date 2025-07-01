@@ -40,7 +40,7 @@ const ProfilePage = () => {
   return (
     <div>
       <Container>
-        <div tw=''>
+        <div tw='pb-[20px]'>
           <div>
             <div>
               <div tw='relative h-[150px] bg-gradient-to-br from-blue-400 to-purple-500'>
@@ -72,24 +72,24 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div tw='mt-[15px] flex gap-[20px] text-[14px] w-full'>
-          {![pathnames.library, pathnames.liked].includes(pathname) && (
-            <div tw='flex flex-col gap-[8px] bg-white py-6 px-2 rounded-2xl shadow-lg w-fit self-start'>
-              {infoLinks.map(item => (
-                <NavLink
-                  key={item.link}
-                  to={item.link}
-                  tw='hover:text-blue-500'
-                  css={[pathname + search === item.link && tw`border-b-2 border-b-[#3b82f6]`]}
-                >
-                  {t(`profile.${item.label}`)}
-                </NavLink>
-              ))}
+          <div tw='mt-[15px] flex gap-[20px] text-[14px] w-full'>
+            {![pathnames.library, pathnames.liked].includes(pathname) && (
+              <div tw='flex flex-col gap-[8px] bg-white py-6 px-2 rounded-2xl shadow-lg w-fit self-start'>
+                {infoLinks.map(item => (
+                  <NavLink
+                    key={item.link}
+                    to={item.link}
+                    tw='hover:text-blue-500'
+                    css={[pathname + search === item.link && tw`border-b-2 border-b-[#3b82f6]`]}
+                  >
+                    {t(`profile.${item.label}`)}
+                  </NavLink>
+                ))}
+              </div>
+            )}
+            <div tw='flex-grow'>
+              <Outlet />
             </div>
-          )}
-          <div tw='flex-grow'>
-            <Outlet />
           </div>
         </div>
       </Container>

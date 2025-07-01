@@ -8,7 +8,7 @@ const ProfileAnswersPage = () => {
   const { t } = useTranslation();
 
   return (
-    <div tw='bg-white p-6 rounded-2xl shadow-lg max-w-[800px] flex flex-col gap-4'>
+    <div tw='bg-white p-6 rounded-2xl shadow-lg flex flex-col gap-4'>
       <h2 tw='text-[24px] font-bold mb-4'>{t('profile.answers')}</h2>
       {PROJECT_FAQ.map((item, idx) => (
         <div key={idx} tw='border p-4 rounded bg-gray-50'>

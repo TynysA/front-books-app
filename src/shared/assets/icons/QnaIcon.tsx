@@ -1,9 +1,7 @@
-import { SVGProps } from 'react';
-import { JSX } from 'react/jsx-runtime';
-
-export default function QnaIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+import { IIconProps } from './model/IIcon.ts';
+export default function QnaIcon(props: IIconProps) {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg {...props} width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         d='M12.0008 22.0008C9.23933 22.0008 6.73933 20.8815 4.92969 19.0718L10.4286 13.5729C10.4258 13.6033 10.4234 13.6339 10.4217 13.6648C10.4168 13.7093 10.4142 13.7544 10.4142 13.8C10.4142 14.518 11.039 15.1 11.8098 15.1C12.8735 15.1 13.076 14.5736 13.2803 14.0423C13.4118 13.7006 13.544 13.3568 13.9067 13.15C15.0603 12.4922 16 11.327 16 9.9C16 9.34794 15.8769 8.82267 15.6548 8.34672L19.0718 4.92969C20.8815 6.73933 22.0008 9.23933 22.0008 12.0008C22.0008 17.5236 17.5236 22.0008 12.0008 22.0008ZM10.4142 17.7C10.4142 16.982 11.039 16.4 11.8098 16.4C12.5805 16.4 13.2053 16.982 13.2053 17.7C13.2053 18.418 12.5805 19 11.8098 19C11.039 19 10.4142 18.418 10.4142 17.7Z'
         fill='url(#paint0_linear_43913_60630)'

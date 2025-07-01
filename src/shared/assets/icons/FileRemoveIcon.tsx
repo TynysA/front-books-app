@@ -1,7 +1,6 @@
-import { SVGProps } from 'react';
-import { JSX } from 'react/jsx-runtime';
+import { IIconProps } from './model/IIcon.ts';
 
-export default function FileRemoveIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+export default function FileRemoveIcon(props: IIconProps) {
   return (
     <svg
       className='ours'

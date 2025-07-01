@@ -1,9 +1,7 @@
-import { SVGProps } from 'react';
-import { JSX } from 'react/jsx-runtime';
-
-export default function DocumentDeleteIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+import { IIconProps } from './model/IIcon.ts';
+export default function DocumentDeleteIcon(props: IIconProps) {
   return (
-    <svg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg {...props} width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path d='M17.7373 2.92603L19.8575 5.05614L17.7373 2.92603Z' fill='#4EBC73' />
       <path
         d='M14.8115 2.03052H16.225C16.5969 2.03319 16.9535 2.1794 17.2203 2.43862L20.3757 5.59395C20.6349 5.86075 20.7811 6.21733 20.7838 6.58932V8.00277H16.8023C16.2743 8.00277 15.7679 7.79303 15.3946 7.41969C15.0213 7.04635 14.8115 6.54 14.8115 6.01202V2.03052Z'

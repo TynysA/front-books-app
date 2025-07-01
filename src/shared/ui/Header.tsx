@@ -11,8 +11,6 @@ import UserMenu from '@/shared/ui/Switchers/UserMenu/UserMenu.tsx';
 const Header = () => {
   const { isAuth, user } = useTypedSelector(state => state.auth);
 
-  // const { user } = useTypedSelector(state => state.auth);
-
   const handleSearch = async value => {
     console.log(value);
   };
@@ -21,8 +19,8 @@ const Header = () => {
       <Container>
         <div tw='pt-[3px] pb-[15px] flex justify-between  items-center gap-[30px] text-[#fff] text-[12px] font-black leading-[16px] tracking-[1px] uppercase'>
           <Link to={pathnames.welcome} tw='text-[14px] lowercase font-semibold'>
-            <span tw='text-[16px] uppercase font-black'>B</span>ooks 📖
-            <span tw='text-[16px] uppercase font-black'>C</span>
+            <span tw='uppercase font-black'>B</span>ooks 📖
+            <span tw='uppercase font-black'>C</span>
             astle🏰
           </Link>
           <div tw='flex gap-[20px]  items-center'>

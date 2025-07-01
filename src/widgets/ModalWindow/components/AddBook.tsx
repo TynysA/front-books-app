@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import tw from 'twin.macro';
 
-import { useAddBookMutation, useAddFilesMutation, useGetAuthorsQuery } from '@/entities/base';
+import { useGetAuthorsQuery } from '@/entities/base';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 import Creatable from '@/shared/ui/actionsUI/CreatableSelect/CreatableSelect.tsx';
 import Input from '@/shared/ui/actionsUI/Input/Input.tsx';
@@ -14,21 +14,23 @@ import { FileLoader } from '@/shared/ui/FileLoader';
 import Textarea from '@/shared/ui/Textarea/Textarea.tsx';
 import { BackdropLoader } from '@/widgets/BackdropLoader';
 import { IAddBook } from '@/widgets/ModalWindow/components/addBook/types.ts';
+import { ModalProps } from '@/widgets/ModalWindow/model/types.ts';
 import { addBookModalSchema } from '@/widgets/ModalWindow/model/validationSchema.ts';
 
-const AddBook = props => {
+const AddBook = (props: ModalProps) => {
   const { t } = useTranslation();
   const [epub, setEpub] = useState<File | null>(null);
   const [fb2, setFb2] = useState<File | null>(null);
   const [cover, setCover] = useState<File | null>(null);
-  const [fetchAddBook, { isLoading }] = useAddBookMutation();
-  const [fetchAddFiles, { isLoading: fileLoading }] = useAddFilesMutation();
+  // const [fetchAddBook, { isLoading }] = useAddBookMutation();
+  // const [fetchAddFiles, { isLoading: fileLoading }] = useAddFilesMutation();
   const { data: authors, isLoading: authorsLoading } = useGetAuthorsQuery();
 
   const { control, handleSubmit } = useForm({
     mode: 'onSubmit',
     resolver: yupResolver(addBookModalSchema(t))
   });
+
   const uploadFunc = (e: ChangeEvent<HTMLInputElement>, docType: string) => {
     if (e.target.files?.[0]) {
       const file = e.target.files[0];
@@ -49,16 +51,24 @@ const AddBook = props => {
     console.log(e);
   };
   const addBook = (data: IAddBook) => {
-    console.log(data);
-    console.log(epub);
-    console.log(fb2);
-    console.log(cover);
+    const payload = {
+      ...data,
+      epub,
+      fb2,
+      cover
+    };
+
+    console.log(payload);
+
+    props.handleFunction(payload);
   };
 
   return (
     <form tw='flex flex-col gap-[20px]' onSubmit={handleSubmit(addBook)}>
-      {(isLoading || fileLoading || authorsLoading) && <BackdropLoader />}
-      <h2 tw='text-[#0F2920] text-[22px] font-semibold leading-[100%] text-center'>{t('books.create')}</h2>
+      {authorsLoading && <BackdropLoader />}
+      <h2 tw='text-[#0F2920] text-[22px] font-semibold leading-[100%] text-center'>
+        {props.modalContent == 'from-admin' ? t('books.create') : t('books.create-from-user')}
+      </h2>
       <Input type='text' control={control} id={'title'} name='title' placeholder={t('books.title')} />
       <Creatable options={authors} control={control} name='authors' placeholder={t('books.authors')} id={'authors'} />
       <Textarea
@@ -93,11 +103,15 @@ const AddBook = props => {
         uploadFunc={uploadFunc}
         removeFunc={removeFunc}
       />
-      <div tw='flex gap-[30px]'>
-        <Button variant={'material'} twStyle={tw`grow w-[50%]`} onClick={props.handleClose} type={'button'}>
-          {t('common.cancel')}
-        </Button>
-        <Button variant={'material'} twStyle={tw`bg-[#2BC48A] text-white grow w-[50%]`} type={'submit'}>
+      <div tw='flex gap-[30px] justify-between'>
+        {props.handleClose ? (
+          <Button variant={'material'} twStyle={tw`grow w-[50%]`} onClick={props.handleClose} type={'button'}>
+            {t('common.cancel')}
+          </Button>
+        ) : (
+          <div tw='grow w-[50%] text-gray text-[16px] font-light'>*{props?.modalContent}</div>
+        )}
+        <Button variant={'material'} twStyle={tw`bg-[#2BC48A] text-white  w-[50%]`} type={'submit'}>
           {t('common.confirm')}
         </Button>
       </div>

@@ -1,6 +1,7 @@
 import 'twin.macro';
 
 import { Trans, useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { useGetBooksQuery } from '@/entities/base';
 import Container from '@/shared/ui/Container/Container.tsx';
@@ -72,9 +73,9 @@ const WelcomePage = () => {
           </div>
           <div tw='hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
             {data.map(book => (
-              <a
+              <Link
                 key={book.id}
-                href={`/book/${book.bookId}`}
+                to={`/book/${book.bookId}`}
                 tw='bg-white p-6 rounded-2xl shadow-lg cursor-pointer flex flex-col gap-[20px] no-underline'
               >
                 <img
@@ -89,7 +90,7 @@ const WelcomePage = () => {
                 >
                   {book.title}
                 </span>
-              </a>
+              </Link>
             ))}
           </div>
         </div>

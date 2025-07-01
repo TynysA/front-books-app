@@ -9,10 +9,11 @@ import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 
 const Books = () => {
   const { t } = useTranslation();
-  const { setIsModalOpen, setModalType } = useOutletContext<IOutletProps>();
+  const { setIsModalOpen, setModalType, setModalContent } = useOutletContext<IOutletProps>();
 
   const addNewTest = () => {
     setIsModalOpen(true);
+    setModalContent('from-admin');
     setModalType(MODAL_TYPES.ADD_BOOK);
   };
   return (

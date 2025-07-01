@@ -21,15 +21,13 @@ export const baseApi = api.injectEndpoints({
       query: id => ({
         url: `/books/${id}`,
         method: 'GET'
-      }),
-      invalidatesTags: ['Base']
+      })
     }),
     getAuthors: build.query({
       query: () => ({
         url: `/books/authors`,
         method: 'GET'
-      }),
-      invalidatesTags: ['Base']
+      })
     }),
     addBook: build.mutation({
       query: body => ({
