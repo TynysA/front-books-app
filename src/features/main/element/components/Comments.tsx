@@ -1,25 +1,16 @@
 import 'twin.macro';
 
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import CommentItem from '@/features/main/element/components/CommentItem.tsx';
+import CommentWrite from '@/features/main/element/components/CommentWrite.tsx';
 import { CommentType, mockCommentsData } from '@/features/main/model/types';
-import { commentSchema } from '@/features/main/model/validationSchema';
-import Button from '@/shared/ui/actionsUI/Button/Button';
-import Textarea from '@/shared/ui/Textarea/Textarea';
 
 const Comments = () => {
   const { t } = useTranslation();
   const [comments, setComments] = useState<CommentType[]>(mockCommentsData);
   const [activeReplyForm, setActiveReplyForm] = useState<string | null>(null);
-
-  const { control, handleSubmit, reset } = useForm({
-    mode: 'onSubmit',
-    resolver: yupResolver(commentSchema(t))
-  });
 
   const submitComment = async (text: string, parentId: string | null = null) => {
     try {
@@ -50,12 +41,7 @@ const Comments = () => {
       <h2 tw='text-xl font-semibold mb-4'>Комментарии</h2>
 
       {/* Форма для главного комментария */}
-      <form id='write-comment' onSubmit={handleSubmit(handleMainSubmit)}>
-        <Textarea placeholder={t('comments.write-comment')} id='comment' name='comment' control={control} />
-        <Button variant='grey' type='submit'>
-          Отправить
-        </Button>
-      </form>
+      <CommentWrite onSubmit={handleMainSubmit} />
 
       {/* Список комментариев */}
       <div tw='mt-6 space-y-4'>
@@ -70,32 +56,6 @@ const Comments = () => {
         ))}
       </div>
     </div>
-  );
-};
-
-type ReplyFormProps = {
-  parentId: string;
-  onSubmit: (data: any, resetReplyForm: () => void) => void;
-};
-
-const ReplyForm = ({ parentId, onSubmit }: ReplyFormProps) => {
-  const { t } = useTranslation();
-  const { control, handleSubmit, reset } = useForm({
-    mode: 'onSubmit',
-    resolver: yupResolver(commentSchema(t))
-  });
-
-  const handleReplySubmit = async (data: any) => {
-    await onSubmit(data, () => reset());
-  };
-
-  return (
-    <form onSubmit={handleSubmit(handleReplySubmit)} tw='mt-2'>
-      <Textarea placeholder={t('comments.write-reply')} id={`reply-${parentId}`} name='comment' control={control} />
-      <Button variant='grey' type='submit' size='small'>
-        Отправить
-      </Button>
-    </form>
   );
 };
 

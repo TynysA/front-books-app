@@ -3,10 +3,11 @@ import 'twin.macro';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { useTypedSelector } from '@/app/store';
-import Comments from '@/features/main/element/components/Comments.tsx';
+import { useGetOneBookQuery } from '@/entities/base';
+import BookItem from '@/features/main/element/BookItem.tsx';
 import Container from '@/shared/ui/Container/Container.tsx';
 import Header from '@/shared/ui/Header.tsx';
+import { FullScreenLoader } from '@/widgets/FullScreenLoader';
 const mockComments = [
   {
     id: '1',
@@ -74,61 +75,19 @@ const mockComments = [
 const Book = () => {
   const { t } = useTranslation();
   const { id } = useParams();
-  const { user } = useTypedSelector(state => state.auth);
-  // const { data: book, isLoading } = useGetOneBookQuery(id);
-  // const [isLiked, setIsLiked] = useState(user?.likedBooks.includes(book?.bookId));
+  const { data: book, isLoading } = useGetOneBookQuery(id);
 
-  const handleLikeClick = () => {
-    // if (book?.bookId) {
-    //   setIsLiked(true);
-    // }
-  };
-
-  // if (isLoading) return <FullScreenLoader />;
+  if (isLoading) return <FullScreenLoader />;
 
   return (
     <div tw='bg-root overflow-hidden flex flex-col bg-[#4582af] text-primary min-h-screen'>
       <div tw='bg-[#4582af]'>
         <Header />
       </div>
+
       <Container>
-        {/*<div tw='flex flex-col md:flex-row gap-6 md:gap-12 items-center md:items-start py-8'>*/}
-        {/*  <div tw='w-full max-w-[280px] md:max-w-[300px] h-[400px] md:h-[450px] overflow-hidden rounded-xl shadow-md'>*/}
-        {/*    <img*/}
-        {/*      title={book?.title}*/}
-        {/*      alt={`cover_${book?.bookId}`}*/}
-        {/*      tw='w-full h-full object-cover'*/}
-        {/*      src={`https://abdhwatiqpeztisaxtlu.supabase.co/storage/v1/object/public/books/cover/${book?.bookId}_cover`}*/}
-        {/*    />*/}
-        {/*  </div>*/}
-
-        {/*  <div tw='flex flex-col gap-4 w-full'>*/}
-        {/*    <h1 tw='text-black text-[22px] md:text-[28px] font-bold text-center md:text-left' title={book?.title}>*/}
-        {/*      {book?.title}*/}
-        {/*    </h1>*/}
-        {/*    <div tw='flex gap-[15px]'>*/}
-        {/*      <div tw='px-[10px] py-[4px] bg-white text-black rounded-[8px] hover:bg-[#e6e6e6] duration-300 ease-linear '>*/}
-        {/*        + {t('books.add-to-library')}*/}
-        {/*      </div>*/}
-        {/*      <button type={'button'} tw='w-[24px] cursor-pointer' onClick={handleLikeClick}>*/}
-        {/*        <HeartLike fill={isLiked ? '#FF0000' : 'none'} stroke={isLiked ? '#FF0000' : 'black'} />*/}
-        {/*      </button>*/}
-        {/*    </div>*/}
-
-        {/*    <p tw='text-black text-[16px] md:text-[18px] leading-relaxed text-justify whitespace-pre-line'>*/}
-        {/*      {book?.description}*/}
-        {/*    </p>*/}
-
-        {/*    <div tw='text-black text-[16px] md:text-[18px]'>*/}
-        {/*      <strong>{t('books.authors')}:</strong> {book?.author?.join(', ') || 'Unknown'}*/}
-        {/*    </div>*/}
-
-        {/*    <div tw='text-black text-[16px] md:text-[18px]'>*/}
-        {/*      <strong>{t('books.language')}:</strong> {book?.language ? t(`books.${book.language}`) : 'N/A'}*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-        <Comments />
+        <BookItem book={book} />
+        {/*<Comments />*/}
       </Container>
     </div>
   );

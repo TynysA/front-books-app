@@ -1,17 +1,17 @@
 import { motion } from 'framer-motion';
 import tw from 'twin.macro';
 
-import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton } from './types.ts';
+import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton, ISelectButton } from './types.ts';
 
 const buttonVariants: IButtonVariants = {
   primary: tw`bg-[#11583C] text-[14px] leading-[normal] font-bold text-white p-[16px] rounded-[10px]`,
   colorBg: tw`bg-[#B3B3B3] text-[14px] leading-[normal] font-bold text-[#242624] p-[16px] rounded-[10px]`,
   transparent: tw`bg-transparent text-[14px] leading-[normal] font-bold text-[#050505] p-[16px] rounded-[10px] border border-black`,
   material: tw`bg-white text-[16px] leading-[normal] font-bold text-[#4FAF3B] p-[16px] rounded-[10px] shadow-material-btn`,
-  // table_control: tw`py-[1px] px-[10px] font-bold text-white bg-button-gradient-green rounded-[3px]`,
+  table_control: tw`py-[1px] px-[10px] font-bold text-white rounded-[3px]`,
   flat: tw`bg-[#4EBC73] text-[18px] rounded-[16px] text-white font-semibold`,
   panel: tw`bg-[#517F48] py-[10px] px-[16px] text-[16px] rounded-[10px] text-white shadow-btn font-semibold`,
-  // secondary: tw`bg-button-green-gradient text-[16px] rounded-[10px] text-white font-semibold`,
+  secondary: tw`text-[14px] px-[10px]  rounded-[10px] text-white font-semibold`,
   grey: tw`bg-[#EAECED] text-[18px] rounded-[10px] text-[#4EBC73] font-semibold`
 };
 
@@ -42,14 +42,9 @@ const Button = ({
       type={type}
       onClick={onClick}
     >
-      {variant === 'primary' && <LinkButton text={children} icon={icon} />}
-      {variant === 'material' && <LinkButton text={children} icon={icon} />}
-      {variant === 'flat' && <LinkButton text={children} icon={icon} />}
-      {variant === 'panel' && <LinkButton text={children} icon={icon} />}
-      {variant === 'colorBg' && <LinkButton text={children} icon={icon} />}
-      {variant === 'transparent' && <LinkButton text={children} icon={icon} />}
-      {variant === 'grey' && <LinkButton text={children} icon={icon} />}
-
+      {['primary', 'material', 'flat', 'panel', 'colorBg', 'transparent', 'grey', 'secondary'].includes(variant) && (
+        <LinkButton text={children} icon={icon} />
+      )}
       {variant === 'icon' && <IconButton icon={icon} />}
     </motion.button>
   );
@@ -68,6 +63,18 @@ const LinkButton = ({ text, icon }: ILinkButton) => {
 
 const IconButton = ({ icon }: IIconButton) => {
   return <div>{icon}</div>;
+};
+const SelectButton = ({ text, selected }: ISelectButton) => {
+  return (
+    <div tw='flex gap-[10px] text-left items-center justify-between'>
+      <span>{text}</span>
+      {selected ? (
+        <div tw='w-[24px] h-[24px] bg-check'></div>
+      ) : (
+        <div tw='w-[24px] h-[24px] rounded-full border-[2px] border-[#616161]'></div>
+      )}
+    </div>
+  );
 };
 
 export default Button;

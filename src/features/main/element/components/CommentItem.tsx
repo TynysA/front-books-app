@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import tw from 'twin.macro';
 
+import CommentWrite from '@/features/main/element/components/CommentWrite.tsx';
 import { CommentType } from '@/features/main/model/types';
 import { commentSchema } from '@/features/main/model/validationSchema';
 import Button from '@/shared/ui/actionsUI/Button/Button';
-import Textarea from '@/shared/ui/Textarea/Textarea';
 import { beautifyDate } from '@/shared/utils';
 
 type Props = {
@@ -37,7 +37,7 @@ const CommentItem = ({ comment, activeReplyForm, setActiveReplyForm, handleReply
   return (
     <div css={[tw`mt-4`, depth > 0 && tw`ml-6 pl-4 border-l border-gray-50`]}>
       <div tw='flex items-center text-sm text-gray mb-1'>
-        <span tw='font-semibold'>{author.username}</span>
+        <span tw='font-semibold'>{author?.username}</span>
         <span tw='ml-2 text-xs text-gray'>{beautifyDate(new Date(createdAt))}</span>
       </div>
 
@@ -49,22 +49,20 @@ const CommentItem = ({ comment, activeReplyForm, setActiveReplyForm, handleReply
             Отмена
           </button>
         ) : (
-          <button tw='text-blue-500 text-sm' type='button' onClick={() => setActiveReplyForm(id)}>
-            Ответить
-          </button>
+          <Button
+            variant='secondary'
+            type='button'
+            onClick={() => onReplySubmit(id)}
+            twStyle={tw`bg-[#4582af] py-[6px] opacity-65 hover:opacity-100 `}
+          >
+            Отправить
+          </Button>
         )}
         <span tw='text-sm text-gray'>👍 {likes}</span>
       </div>
 
       {/* Форма ответа */}
-      {activeReplyForm === id && (
-        <form onSubmit={handleSubmit(onReplySubmit)} tw='mt-2'>
-          <Textarea placeholder={t('comments.write-reply')} id={`reply-${id}`} name='comment' control={control} />
-          <Button variant='grey' type='submit' size='small'>
-            Отправить
-          </Button>
-        </form>
-      )}
+      {activeReplyForm === id && <CommentWrite parentId={id} onSubmit={onReplySubmit} />}
 
       {/* Рекурсивные вложенные ответы */}
       {replies && replies.length > 0 && (

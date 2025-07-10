@@ -2,19 +2,38 @@ import { api } from '@/app/api';
 
 export const userApi = api.injectEndpoints({
   endpoints: build => ({
-    updateUserBg: build.mutation({
-      query: formData => ({
-        url: '/users/update-bg',
-        method: 'PUT',
-        body: formData
+    likeBook: build.mutation({
+      query: bookId => ({
+        url: `/user/like-book/${bookId}`,
+        method: 'POST'
       }),
-      invalidatesTags: ['User'] // <<< Вот это важно!
+      invalidatesTags: ['User']
     }),
-    getCurrentUser: build.query({
-      query: () => '/users/me',
-      providesTags: ['User'] // <<< Очень важно!
+
+    addToLibrary: build.mutation({
+      query: bookId => ({
+        url: `/user/add-to-library/${bookId}`,
+        method: 'POST'
+      }),
+      invalidatesTags: ['User']
+    }),
+
+    updateUserBg: build.mutation({
+      query: body => ({
+        url: '/user/update-bg',
+        method: 'POST',
+        body
+      }),
+      invalidatesTags: ['User']
+    }),
+
+    getUserBooks: build.query({
+      query: () => ({
+        url: '/user/combined-books',
+        method: 'GET'
+      }),
+      providesTags: ['User']
     })
   })
 });
-
-export const { useUpdateUserBgMutation, useGetCurrentUserQuery } = userApi;
+export const { useLikeBookMutation, useAddToLibraryMutation, useUpdateUserBgMutation, useGetUserBooksQuery } = userApi;

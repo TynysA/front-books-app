@@ -40,3 +40,7 @@ export interface IBtnStyles {
   isLoading?: boolean;
   twStyle?: TwStyle;
 }
+export interface ISelectButton {
+  selected?: boolean;
+  text: ReactNode;
+}
