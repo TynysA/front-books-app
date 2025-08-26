@@ -12,6 +12,7 @@ const MainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState(null);
   const [modalType, setModalType] = useState('');
+
   return (
     <Container>
       <div tw='mt-[15px]'>

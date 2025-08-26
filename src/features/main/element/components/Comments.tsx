@@ -18,7 +18,6 @@ const Comments = () => {
         text,
         parentId
       });
-      reset();
       setActiveReplyForm(null);
       // Здесь перезагрузка комментариев с бэка (пока заглушка)
       // fetchComments();

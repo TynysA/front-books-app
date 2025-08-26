@@ -28,18 +28,34 @@ const BookItem = ({ book }: { book: IBook }) => {
     try {
       await fetchLikeBook(book.bookId).unwrap();
       setIsLiked(prev => !prev);
-      toast.success(isLiked ? 'Книга удалена из избранного' : 'Книга добавлена в избранное');
+      toast.success(isLiked ? 'Книга удалена из избранного' : 'Книга добавлена в избранное', {
+        position: 'top-center',
+        hideProgressBar: true,
+        autoClose: 10000
+      });
     } catch (error) {
-      toast.error('Не удалось изменить избранное');
+      toast.error((() => 'Не удалось изменить избранное')(), {
+        position: 'top-center',
+        hideProgressBar: true,
+        autoClose: 3000
+      });
     }
   };
 
   const handleAddToLibraryClick = async () => {
     try {
       await fetchAddToLibrary(book.bookId).unwrap();
-      toast.success('Книга добавлена в библиотеку!');
+      toast.success('Книга добавлена в библиотеку!', {
+        position: 'top-center',
+        hideProgressBar: true,
+        autoClose: 3000
+      });
     } catch (error) {
-      toast.error('Не удалось добавить в библиотеку');
+      toast.error((() => 'Не удалось добавить в библиотеку')(), {
+        position: 'top-center',
+        hideProgressBar: true,
+        autoClose: 3000
+      });
     }
   };
 
@@ -68,6 +84,19 @@ const BookItem = ({ book }: { book: IBook }) => {
             disabled={libraryLoading}
           >
             + {t('books.add-to-library')}
+          </button>
+          <button
+            onClick={() =>
+              toast.error((() => 'Не удалось добавить в библиотеку')(), {
+                position: 'top-center',
+                hideProgressBar: true,
+                autoClose: 3000
+              })
+            }
+            tw='px-[10px] py-[4px] bg-white text-black rounded-[8px] hover:bg-[#e6e6e6] duration-300 ease-linear'
+            disabled={libraryLoading}
+          >
+            toast
           </button>
 
           <button

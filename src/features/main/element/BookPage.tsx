@@ -5,10 +5,11 @@ import { useParams } from 'react-router-dom';
 
 import { useGetOneBookQuery } from '@/entities/base';
 import BookItem from '@/features/main/element/BookItem.tsx';
+import { CommentType } from '@/features/main/model/types.ts';
 import Container from '@/shared/ui/Container/Container.tsx';
 import Header from '@/shared/ui/Header.tsx';
 import { FullScreenLoader } from '@/widgets/FullScreenLoader';
-const mockComments = [
+const mockComments: CommentType[] = [
   {
     id: '1',
     author: {
@@ -72,7 +73,7 @@ const mockComments = [
   }
 ];
 
-const Book = () => {
+const BookPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data: book, isLoading } = useGetOneBookQuery(id);
@@ -93,4 +94,4 @@ const Book = () => {
   );
 };
 
-export default Book;
+export default BookPage;

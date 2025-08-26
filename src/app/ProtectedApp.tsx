@@ -3,7 +3,7 @@ import 'twin.macro';
 import { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
-import Books from '@/features/main/books/Books.tsx';
+import BooksFromAdmin from '@/features/main/books/BooksFromAdmin.tsx';
 import BooksFromUsers from '@/features/main/books/BooksFromUsers.tsx';
 import { LibraryPage, LikedPage, ProfileInfoPage } from '@/features/profile';
 import MainPage from '@/pages/MainPage/MainPage.tsx';
@@ -18,7 +18,7 @@ const ProtectedApp = () => {
       <Header />
       <Routes>
         <Route path={pathnames.main} element={<MainPage />}>
-          <Route index element={<Books />} />
+          <Route index element={<BooksFromAdmin />} />
           <Route path={pathnames.books_from_users} element={<BooksFromUsers />} />
         </Route>
         <Route path={pathnames.profile} element={<ProfilePage />}>

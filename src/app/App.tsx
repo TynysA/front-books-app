@@ -4,7 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import ProtectedApp from '@/app/ProtectedApp.tsx';
 import { useTypedSelector } from '@/app/store';
-import Book from '@/features/main/element/Book.tsx';
+import BookPage from '@/features/main/element/BookPage.tsx';
 import LoginPage from '@/pages/LoginPage/LoginPage.tsx';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage.tsx';
 import WelcomePage from '@/pages/WelcomePage/WelcomePage.tsx';
@@ -24,7 +24,7 @@ function App() {
       <Routes>
         <Route path={pathnames.login} element={<LoginPage />} />
         <Route path={pathnames.welcome} element={<WelcomePage />} />
-        <Route path={pathnames.book} element={<Book />} />
+        <Route path={pathnames.book} element={<BookPage />} />
         <Route path={pathnames.register} element={<RegisterPage />} />
         <Route
           path={'*'}

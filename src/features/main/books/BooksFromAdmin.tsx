@@ -7,7 +7,7 @@ import { IOutletProps } from '@/features/main/types.ts';
 import { MODAL_TYPES } from '@/shared/lib/modalTypes.ts';
 import Button from '@/shared/ui/actionsUI/Button/Button.tsx';
 
-const Books = () => {
+const BooksFromAdmin = () => {
   const { t } = useTranslation();
   const { setIsModalOpen, setModalType, setModalContent } = useOutletContext<IOutletProps>();
 
@@ -50,4 +50,4 @@ const Books = () => {
   );
 };
 
-export default Books;
+export default BooksFromAdmin;

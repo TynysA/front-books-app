@@ -1,16 +1,17 @@
 import 'twin.macro';
 
 import { Trans, useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import tw from 'twin.macro';
 
 import { useGetBooksQuery } from '@/entities/base';
+import { BooksList } from '@/shared/ui/book/BookList.tsx';
 import Container from '@/shared/ui/Container/Container.tsx';
 import Header from '@/shared/ui/Header.tsx';
 import { FullScreenLoader } from '@/widgets/FullScreenLoader';
 
 const WelcomePage = () => {
   const { t } = useTranslation();
-  const { data, isLoading } = useGetBooksQuery();
+  const { data, isLoading } = useGetBooksQuery('');
 
   if (isLoading) return <FullScreenLoader />;
 
@@ -71,28 +72,7 @@ const WelcomePage = () => {
               <p tw='mt-4 font-semibold text-lg'>{t('welcome.shareText2')}</p>
             </div>
           </div>
-          <div tw='hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-            {data.map(book => (
-              <Link
-                key={book.id}
-                to={`/book/${book.bookId}`}
-                tw='bg-white p-6 rounded-2xl shadow-lg cursor-pointer flex flex-col gap-[20px] no-underline'
-              >
-                <img
-                  title={book.title}
-                  alt={`image_${book.bookId}`}
-                  tw='w-full aspect-[1/1.5] object-cover rounded-lg'
-                  src={`https://abdhwatiqpeztisaxtlu.supabase.co/storage/v1/object/public/books/cover/${book.bookId}_cover`}
-                />
-                <span
-                  tw='block text-ellipsis whitespace-nowrap overflow-hidden text-black text-[16px] font-medium'
-                  title={book.title}
-                >
-                  {book.title}
-                </span>
-              </Link>
-            ))}
-          </div>
+          <BooksList books={data} twStyle={tw`hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4`} />
         </div>
       </Container>
     </div>

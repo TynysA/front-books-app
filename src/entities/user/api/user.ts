@@ -20,13 +20,12 @@ export const userApi = api.injectEndpoints({
 
     updateUserBg: build.mutation({
       query: body => ({
-        url: '/user/update-bg',
+        url: 'http://localhost:3000/user/update-bg',
         method: 'POST',
         body
       }),
       invalidatesTags: ['User']
     }),
-
     getUserBooks: build.query({
       query: () => ({
         url: '/user/combined-books',

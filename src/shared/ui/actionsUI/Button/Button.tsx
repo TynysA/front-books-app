@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import tw from 'twin.macro';
 
-import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton, ISelectButton } from './types.ts';
+import { IBtnStyles, IButton, IButtonVariants, IIconButton, ILinkButton } from './types.ts';
 
 const buttonVariants: IButtonVariants = {
   primary: tw`bg-[#11583C] text-[14px] leading-[normal] font-bold text-white p-[16px] rounded-[10px]`,
@@ -63,18 +63,6 @@ const LinkButton = ({ text, icon }: ILinkButton) => {
 
 const IconButton = ({ icon }: IIconButton) => {
   return <div>{icon}</div>;
-};
-const SelectButton = ({ text, selected }: ISelectButton) => {
-  return (
-    <div tw='flex gap-[10px] text-left items-center justify-between'>
-      <span>{text}</span>
-      {selected ? (
-        <div tw='w-[24px] h-[24px] bg-check'></div>
-      ) : (
-        <div tw='w-[24px] h-[24px] rounded-full border-[2px] border-[#616161]'></div>
-      )}
-    </div>
-  );
 };
 
 export default Button;

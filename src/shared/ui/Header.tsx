@@ -14,6 +14,8 @@ const Header = () => {
   const handleSearch = async value => {
     console.log(value);
   };
+  console.log(isAuth);
+  console.log(user);
   return (
     <div tw='bg-[#4582af] '>
       <Container>
